@@ -1,12 +1,12 @@
 <?php
-// To be removed... for test only...
-$url_papers="http://papersjds14.sfds.asso.fr/";
-$db=mysql_connect('','','') or die('Erreur de connexion '.mysql_error());
-mysql_select_db('',$db) or die('Erreur de selection '.mysql_error());
-// End "to be removed"
+
+require_once("../payment/config.php");
+require_once("../payment/connect.php");
 
 function printsummary($paperid){
-// TODO : put here the connexion to the db
+// Connection to db: note that table must be identical to user
+$db=mysql_connect($db_server,$db_user,$db_pass) or die('Erreur de connexion '.mysql_error());
+mysql_select_db($db_user,$db) or die('Erreur de selection '.mysql_error());
 
 $sql = 'SELECT P.title, A.content , P.emailContact, U.affiliation '
         . ' FROM `Abstract` A, `Paper` P, `User` U '
@@ -19,7 +19,6 @@ $sql2= 'SELECT U.last_name, U.first_name, U.email, U.affiliation, A.position '
         . ' ORDER BY A.position ASC';
 $result2=mysql_query($sql2) or die('Erreur SQL ! '.$sql2.'<br/>'.mysql_error());
 mysql_close();
-
 
 echo "<hr/>Résumé ".$paperid." :<br/><br/>";
 if(mysql_num_rows($result)){

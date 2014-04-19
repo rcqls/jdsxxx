@@ -1,12 +1,17 @@
 <html dir="ltr" lang="fr-FR">
 <head>
 <meta charset="UTF-8" />
-<title>Programme | 46èmes Journées de Statistique</title>
+<?php
+echo "<title>Programme | ".$eventname."</title>";
+?>
 </head>
 <body>
 
-Le programme détaillé par jour des JdS 2014 est disponible ici. Choisissez le jour et vous pourrez visualiser le programme et les résumés courts et longs (à partir de la date limite de soumission des versions révisées).<br>
-Retour sur le site principal des <a href="http://jds2014.sfds.asso.fr">Journées de Statistique 2014</a>...
+<?php
+echo "<h2>Programme détaillé (par jour) ".$eventname."</h2>
+      Choisissez le jour et vous pourrez visualiser le programme et les résumés courts et longs (à partir de la date limite de soumission des versions révisées).<br>
+      Retour sur le <a href='".$website_url."'>site principal</a>.";
+?>
 <br>
 <br>
 
@@ -21,8 +26,9 @@ function month_in_french($the_month) {
   return $all_months[$the_month];
 }
 
-require_once("/LOCALADR/payment/config.php");
-require_once("/LOCALADR/payment/connect.php");
+// database connexion
+require_once("../payment/config.php");
+require_once("../payment/connect.php");
 $db=mysql_connect($db_server,$db_user,$db_pass) or die('Erreur de connexion '.mysql_error());
 mysql_select_db($db_user,$db) or die('Erreur de sélection '.mysql_error());
 
