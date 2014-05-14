@@ -1,14 +1,36 @@
 <html dir="ltr" lang="fr-FR">
-<head>
-<meta charset="UTF-8" />
-<title>Programme | 46èmes Journées de Statistique</title>
-</head>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Nathalie Villa-Vialaneix">
+		<meta name="description" content="Programme JdS 2014">
+		<title>Programme | 46èmes Journées de Statistique</title>
+    <link rel="shortcut icon" href="img/favicon.ico">
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    
+    <!--mathjax-->
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  </head>
 <body>
 
-Le programme détaillé par jour des JdS 2014 est disponible ici. Choisissez le jour et vous pourrez visualiser le programme et les résumés courts et longs (à partir de la date limite de soumission des versions révisées).<br>
-Retour sur le site principal des <a href="http://jds2014.sfds.asso.fr">Journées de Statistique 2014</a>...
-<br>
-<br>
+<div class="container">
+
+<h1>Programme détaillé des 46èmes Journées de Statistique de la SFdS</h1>
+
+<div class="well">
+	<div class="media">
+  <a class="pull-left" href="#">
+    <img class="media-object" src="img/sfds.png" alt="SFdS" width="96">
+  </a>
+  <div class="media-body">
+Le programme détaillé par jour des JdS 2014 est disponible ici. Vous avez également accès aux résumés courts et longs (à partir de la date limite de soumission des versions révisées). Les résumés des conférenciers invités sont disponibles à <a href="http://jds2014.sfds.asso.fr/programme/conferenciers-invites/">cette page</a>. Le programme complet au format PDF est disponible <a href="http://jds2014.sfds.asso.fr/wp-content/uploads/2014/05/brochure_jds2014.pdf">ici</a>.<br><br>
+Retour sur le site principal des <a href="http://jds2014.sfds.asso.fr">Journées de Statistique 2014</a>
+	</div>
+</div>
+</div>
 
 <?php
 // functions to deal with the date in English
@@ -21,37 +43,36 @@ function month_in_french($the_month) {
   return $all_months[$the_month];
 }
 
-require_once("/LOCALADR/payment/config.php");
-require_once("/LOCALADR/payment/connect.php");
+require_once("/homez.353/sfdsmqrk/jds2014/payment/config.php");
+require_once("/homez.353/sfdsmqrk/jds2014/payment/connect.php");
 $db=mysql_connect($db_server,$db_user,$db_pass) or die('Erreur de connexion '.mysql_error());
 mysql_select_db($db_user,$db) or die('Erreur de sélection '.mysql_error());
 
 $url_showabstract=$website_url."/prog/showabstract.php";
 if(isset($_POST['day'])) $sel_day=$_POST['day']; else $sel_day=0;
 
-echo "<form method='post' action='".$url_prog."' name='main'>";
 $dayquery = 'SELECT DISTINCT slot_date FROM `Slot` ORDER BY slot_date ASC';
 $dayres = mysql_query($dayquery) or die('Erreur SQL !'.$dayquery.'</br>'.mysql_error());
-if (mysql_num_rows($dayres)) {
-  echo "<select name='day'>";
-  while ($the_day=mysql_fetch_array($dayres)) {
-    echo "<option value='".$the_day['slot_date']."'>".day_in_french(date('l',strtotime($the_day['slot_date'])))." ".date('d',strtotime($the_day['slot_date']))." ".month_in_french(date('F',strtotime($the_day['slot_date'])))."</option>";
-  }
-  echo "</select>";
-}
-echo "<input type='submit' value='Choisir' />";
-echo "</form>";
+$dayres2 = mysql_query($dayquery) or die('Erreur SQL !'.$dayquery.'</br>'.mysql_error());
 
-if ($sel_day!='') {
+echo '<ul class="pagination">';
+while ($the_day=mysql_fetch_array($dayres2)) {
+	$sel_day=$the_day['slot_date'];
+	echo '<li><a href="#'.$sel_day.'">'.day_in_french(date('l',strtotime($sel_day))).'</a></li>';
+}
+echo '</ul>';
+
+while ($the_day=mysql_fetch_array($dayres)) {
+	$sel_day=$the_day['slot_date'];
   $slotquery = 'SELECT C.id, C.slot_date, C.begin, C.end FROM `Slot` C' . ' WHERE C.slot_date="' . $sel_day . '" ORDER BY C.begin ASC';
   $slotres = mysql_query($slotquery) or die('Erreur SQL !'.$slotquery.'</br>'.mysql_error());
-  echo "<center><h2>Programme du ".day_in_french(date('l',strtotime($sel_day)))." ".date('d',strtotime($sel_day))." ".month_in_french(date('F',strtotime($sel_day)))."</h2></center>";
+  echo "<a name='".$sel_day."'></a><center><h2>Programme du ".day_in_french(date('l',strtotime($sel_day)))." ".date('d',strtotime($sel_day))." ".month_in_french(date('F',strtotime($sel_day)))."</h2></center>";
 
 if (mysql_num_rows($slotres)) {
 while ($the_slot=mysql_fetch_array($slotres)) {
   $slotid = $the_slot['id'];
-  echo "<h2>".date('H',strtotime($the_slot['begin']))."h".date('i',strtotime($the_slot['begin']))."-"
-  .date('H',strtotime($the_slot['end']))."h".date('i',strtotime($the_slot['end']))."</h2>";
+  echo "<h4>".date('H',strtotime($the_slot['begin']))."h".date('i',strtotime($the_slot['begin']))."-"
+  .date('H',strtotime($the_slot['end']))."h".date('i',strtotime($the_slot['end']))."</h4>";
 
   $sessionquery= 'SELECT S.name, S.room, S.chair, S.id FROM `ConfSession` S' . ' WHERE S.id_slot=' . $slotid . ' ORDER BY S.room ASC';
   $sessionres=mysql_query($sessionquery) or die('Erreur SQL !'.$sessionquery.'</br>'.mysql_error());
@@ -117,6 +138,8 @@ while ($the_slot=mysql_fetch_array($slotres)) {
 }}}
 mysql_close();
 ?>
-
+</div>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<script src="js/bootstrap.js"></script>
 </body>
 </html>

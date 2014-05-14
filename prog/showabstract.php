@@ -1,13 +1,25 @@
+<html dir="ltr" lang="fr-FR">
+  <head>
+    <meta charset="iso_8859-1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Nathalie Villa-Vialaneix">
+	<meta name="description" content="Résumé court">
+	<title>Résumé court | 46èmes Journées de Statistique</title>
+	<link rel="shortcut icon" href="img/favicon.ico">
+  </head>
+<body>
+
 <?php
-// To be removed... for test only...
-$url_papers="http://papersjds14.sfds.asso.fr/";
-$db=mysql_connect('','','') or die('Erreur de connexion '.mysql_error());
-mysql_select_db('',$db) or die('Erreur de selection '.mysql_error());
-// End "to be removed"
+
+require_once("/homez.353/sfdsmqrk/jds2014/payment/config.php");
+require_once("/homez.353/sfdsmqrk/jds2014/payment/connect.php");
+
+// Connection to db: note that table must be identical to user
+$db=mysql_connect($db_server,$db_user,$db_pass) or die('Erreur de connexion '.mysql_error());
+mysql_select_db($db_user,$db) or die('Erreur de sélection '.mysql_error());
 
 function printsummary($paperid){
-// TODO : put here the connexion to the db
-
 $sql = 'SELECT P.title, A.content , P.emailContact, U.affiliation '
         . ' FROM `Abstract` A, `Paper` P, `User` U '
         . ' WHERE A.id_paper=P.id AND P.emailContact=U.email AND A.id_paper=' . $paperid;
@@ -18,8 +30,6 @@ $sql2= 'SELECT U.last_name, U.first_name, U.email, U.affiliation, A.position '
         . ' WHERE P.id=A.id_paper AND A.id_user=U.id AND P.id=' . $paperid
         . ' ORDER BY A.position ASC';
 $result2=mysql_query($sql2) or die('Erreur SQL ! '.$sql2.'<br/>'.mysql_error());
-mysql_close();
-
 
 echo "<hr/>Résumé ".$paperid." :<br/><br/>";
 if(mysql_num_rows($result)){
@@ -51,4 +61,8 @@ else
 $id=$_GET["id"];
 printsummary($id);
 
+mysql_close();
+
 ?>
+</body>
+</html>
