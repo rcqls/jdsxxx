@@ -10,7 +10,7 @@ _Programmes utilisés pour le déploiement des sites des conférences de la SFdS
 * ```config.php``` et ```config-en.php``` : scripts de personnalisation pour les webmestres ; dans le dossier ```payment``` de wordpress
 * ```connect.php``` : script de connexion à la table où est stocké l'instance de myreview et le formulaire d'inscription aux JdS ; dans le dossier ```payment``` de wordpress
 * ```create_registration_table.php``` : scripts de création de la table pour les inscriptions (utilise ```config.php``` et ```connect.php```) ; dans le dossier ```payment``` de wordpress
-* ```details.php``` : script pour l'extraction automatique du programme ; dans le dossier ```prog``` du site wordpress ; utilise le script ```showabstract.php``` ;
+* ```index.php``` : script pour l'extraction automatique du programme ; dans le dossier ```prog``` du site wordpress ; utilise le script ```showabstract.php``` et les fichiers bootstrap du même répertoire
 * ```paymentautoresponse.php``` : fichier d'exécution automatique au retour de la passerelle de paiement ; utilise ```config.php``` et ```connect.php``` ; dans le dossier ```payment``` du site wordpress ;
 * ```showabstract.php``` : script pour montrer les résumés cours ; utilisé pour l'extraction automatique du programme ; dans le dossier ```prog``` du site wordpress ;
 * ```wp_inscriptions.php```, ```wp-inscription_en.php``` : script inclus dans la page "formulaire d'inscription" du site wordpress ; gère le formulaire d'inscription ; utilise ```config.php```, connect.php et ```send_invoice.php``` et nécessite d'avoir exécuté ```create_registration_table.php```
