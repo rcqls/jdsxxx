@@ -1,11 +1,4 @@
 <html dir="ltr" lang="fr-FR">
-
-<?php
-echo "<h2>Programme détaillé (par jour) ".$eventname."</h2>
-      Choisissez le jour et vous pourrez visualiser le programme et les résumés courts et longs (à partir de la date limite de soumission des versions révisées).<br>
-      Retour sur le <a href='".$website_url."'>site principal</a>.";
-?>
-
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -28,7 +21,7 @@ echo "<h2>Programme détaillé (par jour) ".$eventname."</h2>
 	<div class="container">
 
 <?php
-		echo "<h1>Programme détaillé ".$eventname."</h1>";
+		echo "<h1>Programme détaillé (par jour) - ".$eventname."</h1>";
 ?>
 
 		<div class="well">
@@ -56,8 +49,8 @@ function month_in_french($the_month) {
 }
 
 // database connexion
-require_once("/payment/config.php");
-require_once("/payment/connect.php");
+require_once("../payment/config.php");
+require_once("../payment/connect.php");
 
 $db=mysql_connect($db_server,$db_user,$db_pass) or die('Erreur de connexion '.mysql_error());
 mysql_select_db($db_user,$db) or die('Erreur de sélection '.mysql_error());
