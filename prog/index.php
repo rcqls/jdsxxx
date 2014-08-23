@@ -5,6 +5,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="author" content="Nathalie Villa-Vialaneix">
 <?php
+	// database connexion
+	require_once("../payment/config.php");
+	require_once("../payment/connect.php");
 	echo "<meta name='description' content='Programme ".$eventname."'>";
 	echo "<title>Programme | ".$eventname."</title>";
 ?>
@@ -47,10 +50,6 @@ function month_in_french($the_month) {
   $all_months = array("April" => "avril","May" => "mai","June" => "juin");
   return $all_months[$the_month];
 }
-
-// database connexion
-require_once("../payment/config.php");
-require_once("../payment/connect.php");
 
 $db=mysql_connect($db_server,$db_user,$db_pass) or die('Erreur de connexion '.mysql_error());
 mysql_select_db($db_user,$db) or die('Erreur de sélection '.mysql_error());
