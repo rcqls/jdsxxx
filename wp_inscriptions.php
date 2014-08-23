@@ -331,7 +331,7 @@ if (!$confirmed) {
        echo "<option style='font-size: small' value='".$i."'>Exonéré (0 euros)</option>";
      }
     echo "</select>";
-    echo "<font style='font-size: small'><b>Si vous ètes exonéré. Rentrez votre code d'exonération : </b><input name='fcode' type='text' size='20' style='font-size:small' value='".$fcode."' /></font>";
+    echo "<font style='font-size: small'><b>Si vous êtes exonéré, rentrez votre code d'exonération : </b><input name='fcode' type='text' size='20' style='font-size:small' value='".$fcode."' /></font>";
   }
   if ($verified) {
     echo " Je serai accompagné(e) de : ".$nb_acc." personne(s).<input type='hidden' style='font-size:small' name='nbacc' value='".$nb_acc."'/>";
