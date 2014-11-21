@@ -1,0 +1,5 @@
+AuthType Basic
+AuthName "Restricted area: please provide username and password"
+AuthBasicProvider file
+AuthUserFile /homez.353/sfdsmqrk/jds/admin/pwd/passwords
+Require user MissData

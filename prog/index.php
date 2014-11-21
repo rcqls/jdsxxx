@@ -6,15 +6,15 @@
 	<meta name="author" content="Nathalie Villa-Vialaneix">
 <?php
 	// database connexion
-	require_once("../payment/config.php");
-	require_once("../payment/connect.php");
+	require_once("../inc/config.php");
+	require_once("../inc/connect.php");
 	echo "<meta name='description' content='Programme ".$eventname."'>";
 	echo "<title>Programme | ".$eventname."</title>";
 ?>
-	<link rel="shortcut icon" href="img/favicon.ico">
+	<link rel="shortcut icon" href="../inc/img/favicon.ico">
 
 	<!-- Bootstrap core CSS -->
-	<link href="css/bootstrap.css" rel="stylesheet">
+	<link href="../inc/css/bootstrap.css" rel="stylesheet">
     
 	<!--mathjax-->
 	<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -30,7 +30,7 @@
 		<div class="well">
 			<div class="media">
 				<a class="pull-left" href="#">
-					<img class="media-object" src="img/sfds.png" alt="SFdS" width="96">
+					<img class="media-object" src="../inc/img/sfds.png" alt="SFdS" width="96">
 				</a>
 				<div class="media-body">
 	<?php
@@ -144,6 +144,6 @@ mysql_close();
 ?>
 		</div> <!-- container -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-		<script src="js/bootstrap.js"></script>
+		<script src="../inc/js/bootstrap.js"></script>
 	</body>
 </html>

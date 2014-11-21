@@ -14,8 +14,8 @@
 <body>
 
 <?php
-require_once("../payment/config.php");
-require_once("../payment/connect.php");
+require_once("../inc/config.php");
+require_once("../inc/connect.php");
 
 // Connection to db: note that table must be identical to user
 $db=mysql_connect($db_server,$db_user,$db_pass) or die('Erreur de connexion '.mysql_error());
