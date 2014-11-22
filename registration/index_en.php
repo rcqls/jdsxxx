@@ -9,8 +9,8 @@
 	require_once("../inc/config.php");
 	require_once("../inc/connect.php");
 	require_once("../inc/config-en.php");
-	echo "<meta name='description' content='Inscription ".$eventname."'>";
-	echo "<title>Inscription | ".$eventname."</title>";
+	echo "<meta name='description' content='Registration ".$eventname."'>";
+	echo "<title>Registration | ".$eventname."</title>";
 ?>
 	<link rel="shortcut icon" href="../inc/img/favicon.ico">
 
@@ -30,8 +30,8 @@
 				</a>
 				<div class="media-body">
 	<?php
-					echo "<h2>Formulaire d'inscription pour la manifestation ".$eventname."</h2>
-					Retour sur le <a href='".$website_url."'>site principal de la manifestation</a>.";
+					echo "<h2>Registration form for ".$eventname."</h2>
+					Back to the <a href='".$website_url."'>conference's main website</a>.";
 	?>
 				</div> <!-- media-body -->
 			</div> <!-- media -->
@@ -63,7 +63,7 @@ function IsChecked($myarray,$value) {
 
 //Setting up variables for form
 //These lines check if the form is complete
-$lang='fr';
+$lang='en';
 if(isset($_POST['title']))  $title=$_POST['title']; else $title='';
 if(isset($_POST['fname']))  $fname=ucwords(strtolower($_POST['fname'])); else $fname='';
 if(isset($_POST['lname']))  $lname=ucwords(strtolower($_POST['lname'])); else $lname='';
@@ -197,11 +197,11 @@ if (($submitted and $verified) or $confirmed) {
 if ($submitted and !$verified) {
   // Message d'alerte en haut de l'écran
   if($reason==="empty") {
-    echo "<div class='alert alert-danger' role='alert'>Veuillez compléter tous les champs manquants en jaune.</div>";
+    echo "<div class='alert alert-danger' role='alert'>Please fill all fields indicated in yellow.</div>";
   } elseif($reason==="email") {
-    echo "<div class='alert alert-danger' role='alert'>Les deux adresses e-mail ne correspondent pas.</div>";
+    echo "<div class='alert alert-danger' role='alert'>The two emails must be the same.</div>";
   } elseif ($reason==="notfree") {
-    echo "<div class='alert alert-danger' role='alert'>Le code d'exonération entré était incorrect.</div>";
+    echo "<div class='alert alert-danger' role='alert'>The code for a free registration was not correct.</div>";
   }
 }
 
@@ -209,30 +209,30 @@ if ($submitted and !$verified) {
 if (!$confirmed) {
   // Display the form with indications on missing entries and previously entered data if any
   if (!$submitted) {
-    echo "<div class='alert alert-info' role='alert'>Votre inscription peut &ecirc;tre mise à jour à tout moment en remplissant de nouveau ce formulaire <strong>avec la m&ecirc;me adresse e-mail</strong>. Le tarif de la date de votre première inscription vous sera automatiquement appliqué lors de toute modification. ".$welcome_message."<br>
-    <a href='".$current_url_en."'><img src='../inc/img/flag_en.png' alt='francais' width='60'>&nbsp; Formulaire d'inscription en anglais</a></div>";
+    echo "<div class='alert alert-info' role='alert'>Your registration can be updated at any moment be filling this form again with the <strong>same email</strong>. The fees corresponding to your first registration will be automatically applied if you modify your registration.".$welcome_message_en."<br>
+    <a href='".$current_url."'><img src='../inc/img/flag_fr.png' alt='francais' width='60'>&nbsp; Registration form in French</a></div>";
   }
   if ($verified) {
-    if ($exist_email) echo "<div class='alert alert-danger' role='alert'><strong>Attention !</strong> L'adresse e-mail que vous avez indiquée existe dans notre base de données : vous &ecirc;tes sur le point de procéder à une <strong>mise à jour d'une inscription existante</strong>. Pour l'inscription d'un nouveau participant, veuillez changer d'adresse e-mail.</div>";
+    if ($exist_email) echo "Your email is already registered in our database. Your registration is about to be <strong>modified</strong>. If you intended to make a new registration, please, provide another email.";
   }
-  echo '<form role="form" class="form-inline" name="main" action="'. $current_url .'" method="post">';
+  echo '<form role="form" class="form-inline" name="main" action="'. $current_url_en .'" method="post">';
   
-  echo "<h3>Civilité</h3>";
+  echo "<h3>Contact information</h3>";
   // Civilité
   if($verified) {
-    if ($title==="mr") echo "M.&nbsp;<input type='hidden' name='title' value='mr'/>";
-    elseif ($title==="mme") echo "Mme&nbsp;<input type='hidden' name='title' value='mme'/>";
+    if ($title==="mr") echo "Mr.&nbsp;<input type='hidden' name='title' value='mr'/>";
+    elseif ($title==="mme") echo "Ms.&nbsp;<input type='hidden' name='title' value='mme'/>";
   } else {
 		echo '<div class="form-group">';
-			echo '<label for="title" class="col-sm-4 control-label">Civilité* &nbsp;</label>';
+			echo '<label for="title" class="col-sm-4 control-label">Title* &nbsp;</label>';
 			echo '<div class="col-sm-4">';
 				echo "<select class='form-control' name='title'>";
 					echo "<option value='mr'";
 					if ($title==="mr") echo "selected";
-					echo ">M.</option>";
+					echo ">Mr.</option>";
 					echo "<option value='mme'";
 					if($title==="mme") echo "selected";
-					echo ">Mme</option>";
+					echo ">Ms./option>";
 				echo "</select>";
 			echo "</div>";
 		echo '</div>';
@@ -244,9 +244,9 @@ if (!$confirmed) {
   } else {
 		echo '<div class="form-group">';
 			if (empty($fname) & $submitted) echo "&nbsp;<div class='col-sm-2'><mark>Compléter</mark></div> &nbsp;";
-			echo '<label for="fname" class="col-sm-2">Prénom* &nbsp;</label>';
+			echo '<label for="fname" class="col-sm-2">First name* &nbsp;</label>';
 			echo '<div class="col-sm-6">';
-				echo '<input class="form-control" name="fname" placeholder="Prénom" size="50" type="text" value="'.$fname.'">';
+				echo '<input class="form-control" name="fname" placeholder="First name" size="50" type="text" value="'.$fname.'">';
 			echo '</div>';
     echo '</div>';
   }
@@ -256,9 +256,9 @@ if (!$confirmed) {
   } else {
 		echo '<div class="form-group">';
 			if (empty($lname) & $submitted) echo "&nbsp;<div class='col-sm-2'><mark>Compléter</mark></div> &nbsp;";
-			echo '<label for="lname" class="col-sm-2">Nom* &nbsp;</label>';
+			echo '<label for="lname" class="col-sm-2">Last name* &nbsp;</label>';
 			echo '<div class="col-sm-6">';
-				echo '<input class="form-control" name="lname" placeholder="Nom" size="50" type="text" value="'.$lname.'">';
+				echo '<input class="form-control" name="lname" placeholder="Last name" size="50" type="text" value="'.$lname.'">';
 			echo '</div>';
     echo '</div>';
   }
@@ -269,9 +269,9 @@ if (!$confirmed) {
   } else {
   	echo '<div class="form-group">';
 			if (empty($affiliation) & $submitted) echo "&nbsp;<div class='col-sm-1'><mark>Compléter</mark></div> &nbsp;";
-			echo '<label for="affiliation" class="col-sm-2">Affiliation* &nbsp;</label>';
+			echo '<label for="affiliation" class="col-sm-2">Institution* &nbsp;</label>';
 			echo '<div class="col-sm-6">';
-				echo '<input class="form-control" name="affiliation" placeholder="Affiliation" size="75" type="text" value="'.$affiliation.'">';
+				echo '<input class="form-control" name="affiliation" placeholder="Institution" size="75" type="text" value="'.$affiliation.'">';
 			echo '</div>';
     echo '</div>';
   }
@@ -282,9 +282,9 @@ if (!$confirmed) {
   } else {
     echo '<div class="form-group">';
 			if (empty($address) & $submitted) echo "&nbsp;<div class='col-sm-1'><mark>Compléter</mark></div> &nbsp;";
-			echo '<label for="address" class="col-sm-2">Adresse* &nbsp;</label>';
+			echo '<label for="address" class="col-sm-2">Address* &nbsp;</label>';
 			echo '<div class="col-sm-6">';
-				echo '<input class="form-control" name="address" placeholder="Adresse" size="75" type="text" value="'.$address.'">';
+				echo '<input class="form-control" name="address" placeholder="Address" size="75" type="text" value="'.$address.'">';
 			echo '</div>';
     echo '</div>';
   }
@@ -292,9 +292,9 @@ if (!$confirmed) {
     echo $address2."<input type='hidden' style='font-size:small' name='address2' value='".$address2."'/><br />";
   } else {
     echo '<div class="form-group">';
-			echo '<label for="address2" class="col-sm-2">Adresse 2 &nbsp;</label>';
+			echo '<label for="address2" class="col-sm-2">Address 2 &nbsp;</label>';
 			echo '<div class="col-sm-6">';
-				echo '<input class="form-control" name="address2" placeholder="Adresse (suite)" size="75" type="text" value="'.$address2.'">';
+				echo '<input class="form-control" name="address2" placeholder="Address (second line)" size="75" type="text" value="'.$address2.'">';
 			echo '</div>';
     echo '</div>';
   }
@@ -304,9 +304,9 @@ if (!$confirmed) {
   } else {
      echo '<div class="form-group">';
      if (empty($zip) & $submitted) echo "&nbsp;<div class='col-sm-3'><mark>Compléter</mark></div> &nbsp;";
-			echo '<label for="zip" class="col-sm-4">Code Postal* &nbsp;</label>';
+			echo '<label for="zip" class="col-sm-4">Zip code* &nbsp;</label>';
 			echo '<div class="col-sm-4">';
-				echo '<input class="form-control" name="zip" placeholder="Code Postal" size="10" type="text" value="'.$zip.'">';
+				echo '<input class="form-control" name="zip" placeholder="Zip code" size="10" type="text" value="'.$zip.'">';
 			echo '</div>';
     echo '</div>';
   }
@@ -316,9 +316,9 @@ if (!$confirmed) {
   } else {
     echo '<div class="form-group">';
      if (empty($city) & $submitted) echo "&nbsp;<div class='col-sm-2'><mark>Compléter</mark></div> &nbsp;";
-			echo '<label for="city" class="col-sm-2">Ville* &nbsp;</label>';
+			echo '<label for="city" class="col-sm-2">City* &nbsp;</label>';
 			echo '<div class="col-sm-4">';
-				echo '<input class="form-control" name="city" placeholder="Ville" size="50" type="text" value="'.$city.'">';
+				echo '<input class="form-control" name="city" placeholder="City" size="50" type="text" value="'.$city.'">';
 			echo '</div>';
     echo '</div>';
   }
@@ -328,9 +328,9 @@ if (!$confirmed) {
   } else {
 		echo '<div class="form-group">';
      if (empty($country) & $submitted) echo "&nbsp;<div class='col-sm-2'><mark>Compléter</mark></div> &nbsp;";
-			echo '<label for="country" class="col-sm-2">Pays* &nbsp;</label>';
+			echo '<label for="country" class="col-sm-2">Country* &nbsp;</label>';
 			echo '<div class="col-sm-4">';
-				echo '<input class="form-control" name="country" placeholder="Pays" size="50" type="text" value="'.$country.'">';
+				echo '<input class="form-control" name="country" placeholder="Country" size="50" type="text" value="'.$country.'">';
 			echo '</div>';
     echo '</div>';
   }
@@ -341,9 +341,9 @@ if (!$confirmed) {
   } else {
 		echo '<div class="form-group">';
      if (empty($email) & $submitted) echo "&nbsp;<div class='col-sm-2'><mark>Compléter</mark></div> &nbsp;";
-			echo '<label for="email" class="col-sm-4">E-mail (un différent pour chaque inscrit)* &nbsp;</label>';
+			echo '<label for="email" class="col-sm-4">Email (un différent pour chaque inscrit)* &nbsp;</label>';
 			echo '<div class="col-sm-4">';
-				echo '<input class="form-control" name="email" placeholder="E-mail" size="50" type="text" value="'.$email.'">';
+				echo '<input class="form-control" name="email" placeholder="Email" size="50" type="text" value="'.$email.'">';
 			echo '</div>';
     echo '</div>';
   }
@@ -353,9 +353,9 @@ if (!$confirmed) {
   } else {
 		echo '<div class="form-group">';
      if (empty($email2) & $submitted) echo "&nbsp;<div class='col-sm-2'><mark>Compléter</mark></div> &nbsp;";
-			echo '<label for="email2" class="col-sm-4">Confirmation e-mail* &nbsp;</label>';
+			echo '<label for="email2" class="col-sm-4">Confirmation of the email* &nbsp;</label>';
 			echo '<div class="col-sm-4">';
-				echo '<input class="form-control" name="email2" placeholder="Confirmation e-mail" size="50" type="text" value="'.$email2.'">';
+				echo '<input class="form-control" name="email2" placeholder="Confirmation of the email" size="50" type="text" value="'.$email2.'">';
 			echo '</div>';
     echo '</div>';
   }
@@ -364,9 +364,9 @@ if (!$confirmed) {
   if ($verified) {echo "Tél. : ".$phone."<input type='hidden' style='font-size:small' name='phone' value='".$phone."' /><br />";
   } else {
 		echo '<div class="form-group">';
-			echo '<label for="phone" class="col-sm-2">Téléphone &nbsp;</label>';
+			echo '<label for="phone" class="col-sm-2">Phone &nbsp;</label>';
 			echo '<div class="col-sm-6">';
-				echo '<input class="form-control" name="phone" placeholder="Téléphone" size="50" type="text" value="'.$phone.'">';
+				echo '<input class="form-control" name="phone" placeholder="Phone" size="50" type="text" value="'.$phone.'">';
 			echo '</div>';
     echo '</div>';
   }
@@ -382,114 +382,114 @@ if (!$confirmed) {
   }
  
   // Frais
-  echo "<h3>Frais d'inscription</h3>";
+  echo "<h3>Registration</h3>";
   if ($verified) {
-    echo "<i>Je m'inscris en tant que : </i>";
+    echo "<i>My registration is made as: </i>";
     if ($status==$guest_status) {
-    echo "Exonéré (gratuit). <input type='hidden' name='status' value='".$status."'/>";
+    echo "Exonerated participant. <input type='hidden' name='status' value='".$status."'/>";
     } else {
       if ($reg_day < strtotime($deadline_fees)) {
         for ($i=0; $i<sizeof($code_status); $i++) {
           if ($i==$status) {
-            echo $text_status[$i]." (".$fees_before[$i]." euros). <input type='hidden' name='status' value='".$status."'/>";
+            echo $text_status_en[$i]." (".$fees_before[$i]." euros). <input type='hidden' name='status' value='".$status."'/>";
           }
         }
       } else {
         for ($i=0; $i<sizeof($code_status); $i++) {
           if ($i==$status) {
-           echo $text_status[$i]." (".$fees_after[$i]." euros). <input type='hidden' name='status' value='".$status."'/>";
+           echo $text_status_en[$i]." (".$fees_after[$i]." euros). <input type='hidden' name='status' value='".$status."'/>";
           }
         }
       }
     }
   } else {
-    echo "<div class='alert alert-info' role='alert'><b>Attention ! </b>À partir du ".date('d/m/Y',strtotime($deadline_fees)).", les frais d'inscription seront majorés. ";
-    echo "Voir <a href='".$inscription_url."'>ici</a> pour plus de détails.</div><br />";
+    echo "<div class='alert alert-info' role='alert'><b>Warning! </b>After ".date('d/m/Y',strtotime($deadline_fees)).", registration fees are increasing. ";
+    echo "See <a href='".$inscription_url_en."'>here</a> for further details.</div><br />";
     
     echo '<div class="form-group">';
-			echo "<label for='status' class='col-sm-3 control-label'>Je m'inscris en tant que &nbsp;</label>";
+			echo "<label for='status' class='col-sm-3 control-label'>My registration is made as &nbsp;</label>";
 			echo '<div class="col-sm-8">';
 				echo "<select class='form-control' name='status'>";
 					if (time()<strtotime($deadline_fees)) {
 						for ($i=0; $i<sizeof($code_status); $i++) {
 							if ($i==$status) {
-								echo "<option selected value='".$i."'>".$text_status[$i]." (".$fees_before[$i]." euros)</option>";
+								echo "<option selected value='".$i."'>".$text_status_en[$i]." (".$fees_before[$i]." euros)</option>";
 							} else {
-								echo "<option value='".$i."'>".$text_status[$i]." (".$fees_before[$i]." euros)</option>";
+								echo "<option value='".$i."'>".$text_status_en[$i]." (".$fees_before[$i]." euros)</option>";
 							}
 						}
 					} else {
 						for ($i=0; $i<sizeof($code_status); $i++) {
 							if ($i==$status) {
-								echo "<option selected value='".$i."'>".$text_status[$i]." (".$fees_after[$i]." euros)</option>";
+								echo "<option selected value='".$i."'>".$text_status_en[$i]." (".$fees_after[$i]." euros)</option>";
 							} else {
-								echo "<option value='".$i."'>".$text_status[$i]." (".$fees_after[$i]." euros)</option>";
+								echo "<option value='".$i."'>".$text_status_en[$i]." (".$fees_after[$i]." euros)</option>";
 							}
 						}
 					}
 					$i=sizeof($code_status)+1;
 					if ($i==$status) {
-						echo "<option selected value='".$i."'>Exonéré (0 euros)</option>";
+						echo "<option selected value='".$i."'>Exonerated participant (0 euros)</option>";
 					} else {
-						echo "<option value='".$i."'>Exonéré (0 euros)</option>";
+						echo "<option value='".$i."'>Exonerated participant (0 euros)</option>";
 					}
 				echo "</select>";
 			echo "</div>";
-			echo "<label for='fcode' class='col-sm-3 control-label'>Si vous êtes exonéré, rentrez votre code d'exonération &nbsp;</label>";
+			echo "<label for='fcode' class='col-sm-3 control-label'>If you are an exonerated participant, please enter here your exoneration code &nbsp;</label>";
 			echo '<div class="col-sm-4">';
-				echo "<input class='form-control' name='fcode' placeholder='Code exonération' size='50' type='text' value='".$fcode."'>";
+				echo "<input class='form-control' name='fcode' placeholder='Exoneration code' size='50' type='text' value='".$fcode."'>";
 			echo '</div>';
 		echo '</div>';
   }
   if ($verified) {
-    echo "Je serai accompagné(e) de : ".$nb_acc." personne(s).<input type='hidden' style='font-size:small' name='nbacc' value='".$nb_acc."'/>";
+    echo $nb_acc." person(s) will accompany me.<input type='hidden' style='font-size:small' name='nbacc' value='".$nb_acc."'/>";
   } else {
-    echo "<p>Vous pouvez également inscrire un ou plusieurs accompagnants. L'inscription d'un accompagnant lui donne droit de participer au dîner de gala et aux activités sociales. Le coût de l'inscription de chaque accompagnant est fixé à ".$acc_price." euros.";
+    echo "<p>You can also register one or several accompanying persons. The registration of an accompanying person will give her/him the right to participate to the gala diner and to the social activities. The registration fees for an accompanying person is ".$acc_price." euros.";
     echo '<div class="form-group">';
-			echo "<label for='nbacc' class='col-sm-6'>Nombre d'accompagnants &nbsp;</label>";
+			echo "<label for='nbacc' class='col-sm-6'>Number of accompanying persons &nbsp;</label>";
 			echo '<div class="col-sm-6">';
-				echo '<input class="form-control" name="nbacc" placeholder="Accompagnants" size="2" type="text" value="'.$nb_acc.'">';
+				echo '<input class="form-control" name="nbacc" placeholder="Accompanying persons" size="2" type="text" value="'.$nb_acc.'">';
 			echo '</div>';
     echo '</div>';
   }
   
   // Dîner de gala
-  echo "<h3>Dîner de gala (".$gala_diner_date.", ".$gala_diner_price." euros)</h3>";
+  echo "<h3>Gala diner (".$gala_diner_date_en.", ".$gala_diner_price." euros)</h3>";
   if ($verified) {
     if($gala==="1") {
-      echo "Je participerai au dîner de gala.<input type='hidden' name='gala' value='".$gala."'/>";
-    } else echo "Je ne participerai pas au dîner de gala.<input type='hidden' name='gala' value='".$gala."'/>";
+      echo "I will participate to the gala diner.<input type='hidden' name='gala' value='".$gala."'/>";
+    } else echo "I will not participate to the gala diner.<input type='hidden' name='gala' value='".$gala."'/>";
   } else {
-    echo "Je participerai au dîner de gala : ";
+    echo "I will participate to the gala diner: ";
     echo '<div class="radio">';
 			echo '<label>';
 				echo '<input type="radio" name="gala" id="gala" value="1" ';
 				if ($gala==="1") {
 					echo "checked";
 				} else echo "unchecked";
-				echo "/> Oui&nbsp; &nbsp;";
+				echo "/> Yes&nbsp; &nbsp;";
 			echo '</label>';
 		echo '</div>';
 		echo '<div class="radio">';
 			echo '<label>';
 				echo "<input type='radio' name='gala' value='1' id='gala'";
 				if($gala==="0") echo " checked"; else echo " unchecked";
-				echo "/> Non.";
+				echo "/> No.";
 			echo '</label>';
 		echo '</div>';
   }
 
   // Déjeuners
-  echo "<h3>Déjeuners</h3>";
+  echo "<h3>Lunch</h3>";
   if ($verified) {
     $wantlunchtext = "";
     if ($lunch_nb==0) {
-      echo "Je ne désire pas réserver de déjeuner ".$lunch_desc.".";
+      echo "I will not have a lunch ".$lunch_desc.".";
     } else {
-      echo "Je désire réserver ".$lunch_nb." déjeuner(s) ".$lunch_desc." (".$rgl_midi." euros) :<ul>";
-      for ($i=0; $i< sizeof($lunchs); $i++) {
+      echo "I will have ".$lunch_nb." lunch(es) ".$lunch_desc_en." (".$rgl_midi." euros) :<ul>";
+      for ($i=0; $i< sizeof($lunchs_en); $i++) {
         if ($want_lunch[$i]==1) {
-        echo "<li>".$lunchs[$i]."</li>";
+        echo "<li>".$lunchs_en[$i]."</li>";
         $wantlunchtext .= $lunchs_bd_names[$i]."-";
         }
       }
@@ -497,10 +497,10 @@ if (!$confirmed) {
       echo "</ul>";
     }
   } else {
-    echo "Je désire réserver un ou des déjeuner(s) ".$lunch_desc." :";
+    echo "I will have one or several lunch(es) ".$lunch_desc_en." :";
     echo "<table>";
-    for ($i=0; $i< sizeof($lunchs); $i++) {
-      echo "<tr><td>".$lunchs[$i]." (".$lunch_price." euros)&nbsp;&nbsp;</td><td><input name='wantlunch[]' type='checkbox' value='".$lunchs_bd_names[$i]."'";
+    for ($i=0; $i< sizeof($lunchs_en); $i++) {
+      echo "<tr><td>".$lunchs_en[$i]." (".$lunch_price." euros)&nbsp;&nbsp;</td><td><input name='wantlunch[]' type='checkbox' value='".$lunchs_bd_names[$i]."'";
       if ($want_lunch[$i]=="1") echo "checked='checked'";
       echo "></td></tr>";
     }
@@ -508,65 +508,65 @@ if (!$confirmed) {
   }
   
   // Activités sociales
-  echo "<h3>Activités sociales (gratuites)</h3>";
+  echo "<h3>Social activities (free)</h3>";
   if($verified) {
-    echo "Activité sociale (choix 1) : ".$activites[$activity1].".<br />";
+    echo "Social activity (first choice): ".$activites_en[$activity1].".<br />";
     echo " <input style='font-size: small' type='hidden' name='activity1' value='".$activity1."'/>";
-    echo "Activité sociale (choix 2) : ".$activites[$activity2].".<br />";
+    echo "Social activity (second choice): ".$activites_en[$activity2].".<br />";
     echo " <input style='font-size: small' type='hidden' name='activity2' value='".$activity2."'/>";
   } else {
-    echo "<strong>Activités sociales ".$social_activity_date."</strong> : afin de vous satisfaire au mieux et faciliter l'organisation des activités sociales, nous vous proposons de formuler deux choix par ordre de priorité parmi les activités suivantes. Ceci nous permettra de mieux dimensionner les différents groupes.<br>";
-    echo "&nbsp; &nbsp; <b>Activité sociale (choix 1) :</b> <select name='activity1' class='form-control'>";
+    echo "<strong>Social activities ".$social_activity_date_en."</strong>: in order to ease the organization, please provide two choices by priority order for social activities.<br>";
+    echo "&nbsp; &nbsp; <b>Social activity (first choice):</b> <select name='activity1' class='form-control'>";
     for ($i=0; $i<sizeof($activites); $i++) {
       if ($i==$activity1) {
-        echo "<option selected style='font-size: small' value='".$i."'>".$activites[$i]."</option>";
+        echo "<option selected style='font-size: small' value='".$i."'>".$activites_en[$i]."</option>";
       } else {
-        echo "<option style='font-size: small' value='".$i."'>".$activites[$i]."</option>";
+        echo "<option style='font-size: small' value='".$i."'>".$activites_en[$i]."</option>";
       }
     }
     echo "</select>";
-    echo "&nbsp; &nbsp; <b>Activité sociale (choix 2) :</b> <select name='activity2' class='form-control'>";
+    echo "&nbsp; &nbsp; <b>Social activity (second choice):</b> <select name='activity2' class='form-control'>";
     for ($i=0; $i<sizeof($activites); $i++) {
       echo "<option style='font-size: small' value='".$i."'";
       if ($i==$activity2) echo ' selected ';
-      echo ">".$activites[$i]."</option>";
+      echo ">".$activites_en[$i]."</option>";
     }
     echo "</select>";
   }
 
   // Vérifié par le programme : le formulaire est à confirmer par l'utilisateur avec son paiement et des questions additionnelles
   if ($verified and !$confirmed) {
-    echo "<h3>Règlement</h3>";
-    echo "<b>Annulation :</b><br />";
-    echo "Le remboursement des droits d'inscription sera possible sur demande écrite faite à l'adresse e-mail <a href='mailto:".$contact_email."'>".$contact_email."</a> avant le ".$remb_deadline.". Il donnera lieu à une retenue de ".$remb_penalty." euros. Aucun remboursement ne sera effectué après cette date.<br />";
+    echo "<h3>Payment</h3>";
+    echo "<b>Cancelation:</b><br />";
+    echo "Fees refund must be addressed to <a href='mailto:".$contact_email."'>".$contact_email."</a> before ".$remb_deadline_en.". A penalty of ".$remb_penalty." euros will be kept. No fees refund will be allowed after that date.<br />";
     echo "<table style='font-size: small; display:inline'>";
-    echo "<tr><td><strong>Inscription</strong> : </td><td>&nbsp;</td><td><input class='rgl' name='rgl_insc' type='text' size='5' value='".$rgl_insc."' style='text-align:right' readonly/> euros</td></tr>";
-    echo "<tr><td><strong>Repas (".$lunch_nb.")</strong> : </td><td> + </td><td><input class='rgl' name='rgl_midi' type='text' size='5' value='".$rgl_midi."' style='text-align:right'  readonly/> euros</td></tr>";
-    echo "<tr><td><strong>Repas de gala</strong> : </td><td> + </td><td><input class='rgl' name='rgl_gala' type='text' size='5' value='";
+    echo "<tr><td><strong>Registration</strong> : </td><td>&nbsp;</td><td><input class='rgl' name='rgl_insc' type='text' size='5' value='".$rgl_insc."' style='text-align:right' readonly/> euros</td></tr>";
+    echo "<tr><td><strong>Lunches (".$lunch_nb.")</strong> : </td><td> + </td><td><input class='rgl' name='rgl_midi' type='text' size='5' value='".$rgl_midi."' style='text-align:right'  readonly/> euros</td></tr>";
+    echo "<tr><td><strong>Gala diner</strong> : </td><td> + </td><td><input class='rgl' name='rgl_gala' type='text' size='5' value='";
     if ($gala==1) echo $rgl_gala; else echo 0;
     echo "' style='text-align:right'  readonly/> euros</td></tr>";
-    echo "<tr><td><strong>Accompagnants (".$nb_acc.")</strong> : </td><td> + </td><td><input class='rgl' name='rgl_acc' type='text' size='5' value='".$rgl_acc."' style='text-align:right'  readonly/> euros</td></tr>";
-    echo "<tr><td><strong>Total général</strong> : </td><td> = </td><td><input class='rgl' name='total' type='text' size='5' value='".$total."' style='text-align:right'  readonly/> euros</td></tr>";
-    echo "<tr><td><strong>Mode de paiement * </strong> : </td><td>&nbsp;</td><td><select name='payment'>";
+    echo "<tr><td><strong>Accompanying persons (".$nb_acc.")</strong> : </td><td> + </td><td><input class='rgl' name='rgl_acc' type='text' size='5' value='".$rgl_acc."' style='text-align:right'  readonly/> euros</td></tr>";
+    echo "<tr><td><strong>Total</strong> : </td><td> = </td><td><input class='rgl' name='total' type='text' size='5' value='".$total."' style='text-align:right'  readonly/> euros</td></tr>";
+    echo "<tr><td><strong>Type of payment* </strong> : </td><td>&nbsp;</td><td><select name='payment'>";
     for ($i=0; $i < sizeof($pay_desc); $i++) {
       echo "<option value='".$av_pay[$i]."' ";
       if ($payment===$av_pay[$i]) echo "selected";
-      echo " >".$pay_desc[$i]."</option>";
+      echo " >".$pay_desc_en[$i]."</option>";
     }
     echo "</select></td></tr>";
     echo "</table><br />";
-    echo "<strong>Questions supplémentaires :</strong><br />";
+    echo "<strong>Additional questions:</strong><br />";
     for ($i=0; $i < sizeof($add_questions); $i++) {
-      echo "<input type='checkbox' name='addquestions[]' value='".$add_labels[$i]."'>&nbsp; &nbsp;".$add_questions[$i]."<br />";
+      echo "<input type='checkbox' name='addquestions[]' value='".$add_labels[$i]."'>&nbsp; &nbsp;".$add_questions_en[$i]."<br />";
     }
   }
 
   // Si non encore confirmé : boutons de validation
   if(!$verified) {
-    echo "<br><input type='submit' name='submitBtn' value='Soumettre' onClick='' />";
+    echo "<br><input type='submit' name='submitBtn' value='Submit' onClick='' />";
   } else {
-    echo "<input type='submit' name='confirmBtn' value='Confirmer' onClick='' />";
-    echo "<input type='submit' name='editBtn' value='Modifier' onClick='' />";
+    echo "<input type='submit' name='confirmBtn' value='Confirm' onClick='' />";
+    echo "<input type='submit' name='editBtn' value='Modify' onClick='' />";
   }
   echo "</form>";
 } elseif ($confirmed) {
@@ -600,9 +600,9 @@ if (!$confirmed) {
   if ($one_res=mysql_fetch_object($res)) {
     if (($one_res->fees!=$fees) && ($one_res->res==="1")) {
     $ok=0;
-    echo "<div class='alert alert-danger' role='alert'>Vous &ecirc;tes déjà enregistré(e) (adresse e-mail existante dans la base de données) et vous avez déjà payé. Le montant des frais que vous déclarez a changé : veuillez nous contacter à <a href='mailto:".$contact_email."'>".$contact_email."</a> pour faire une demande de modifications de vos options.";
+    echo "<div class='alert alert-danger' role='alert'>You are already registered (your email already exists in our database) and you have already paid. If you want to change your options and that it affects your registration fees you must contact us at <a href='mailto:".$contact_email."'>".$contact_email."</a> and describe us your modification request.";
     } else {
-    echo "<div class='alert alert-danger' role='alert'><em>Vous &ecirc;tiez déjà enregistré(e) (adresse email existante dans la base de données) : <strong>votre inscription a été mise à jour et seule la dernière inscription sera prise en compte.</strong></em>";
+    echo "<div class='alert alert-danger' role='alert'><em>You are already registered (your email already exists in our database) and you have already paid. <strong>Your registration has been updated and only the last one remains valid.</strong></em>";
     $query="UPDATE `".$db_table."` SET `title`='{$title}' , `fname`='{$fname}' , `lname`= '{$lname}' , `affiliation`='{$affiliation}' , `address`='{$address}' , `address2`='{$address2}' , `zip`='{$zip}' , `city`='{$city}' , `country`='{$country}', `phone`='{$phone}' , `fax`='{$fax}' , `status`='{$bd_status}', `nb_acc`='{$nb_acc}', `gala`='{$gala}'";
     for ($i=0; $i < sizeof($lunchs_bd_names); $i++) {
       if ($want_lunch[$i]==1) {
@@ -622,7 +622,7 @@ if (!$confirmed) {
     $ref = $refs->ref;
     }
   } else {
-    echo "<div class='alert alert-danger' role='alert'><em>Votre inscription a été enregistrée.</em>";
+    echo "<div class='alert alert-danger' role='alert'><em>Your registration is registered.</em>";
     $query="INSERT INTO `".$db_table."` (`title` , `fname` , `lname` , `affiliation` , `address` , `address2` , `zip` , `city` , `country` , `email` , `phone` , `fax` , `status` , `nb_acc`, `gala`";
     for ($i=0; $i < sizeof($lunchs_bd_names); $i++) $query.=", `".$lunchs_bd_names[$i]."` ";
     $query.=", `activity1` , `activity2` , `fees` , `payment`, `ref` , `lang`, `res`, `date_first`, `date_modif` ";
@@ -641,18 +641,18 @@ if (!$confirmed) {
     $query .= ")";
     mysql_query($query) or die('Erreur SQL ! '.$sql.'<br/>'.mysql_error());
   }
-  echo "<br><strong>Pour rappel, la référence de votre inscription est ".$ref.".</strong> Veuillez conserver cette référence et l'indiquer dans votre correspondance avec le comité d'organisation pour tout problème relatif à votre inscription ou son paiement.</div>";
+  echo "<br><strong>The reference of your registration is ".$ref.".</strong> Please, keep this reference and use it anytime you contact us for a problem related to your registration.</div>";
   require_once('../facture/send_invoice.php');
 
   if ($ok) {
-    echo "<div class='well'><em>Un email de confirmation vous a été envoyé à votre adresse avec en pièce jointe la facture de votre inscription.</em><br/>";
+    echo "<div class='well'><em>A confirmation email with the invoice has been sent to you.</em><br/>";
 
     if (($payment=="credit")&&($total!=0)) {
       //Form to send payment information to Société Générale (made from the script 'payment.php')
-      echo "En cas de problème, contactez : <a href='mailto:".$contact_email."'>".$contact_email."</a>.";
+      echo "In case of problem, please contact: <a href='mailto:".$contact_email."'>".$contact_email."</a>.";
       $charges = $total*100;
 
-      echo "<br>Vérifiez vos informations et, pour procéder au paiement, cliquez sur l'icône ci-dessous :<br>";
+      echo "<br>Check your registration options and to proceed to the payment, please click below:<br>";
       echo "<form method='POST' action='http://www.sfds.asso.fr/processpayment'>";
       echo "<input type='hidden' name='id' value='".$id_sogen."'>";
       echo "<input type='hidden' name='demo' value='0'>";
@@ -660,9 +660,9 @@ if (!$confirmed) {
       echo "<input type='hidden' name='charges' value='".$charges."' readonly/>";
       echo "<input type='hidden' name='reference' value='".$ref."' readonly/>";
       echo "<center><img src='https://upload.wikimedia.org/wikipedia/commons/4/48/C64b_new.svg' width='64'>";
-      echo "<input type='submit' value='Cliquez ici pour payer par carte bancaire via la passerelle du site de la SFdS' /></center>";
+      echo "<input type='submit' value='Click here to proceed to the payment' /></center>";
       echo "</form>";
-      echo "<br/><span style='font-size:x-small'>Image CB par Roulex 45 (self-made from Public domain, via Wikimedia Commons)</span><br/><br/>";
+      echo "<br/><span style='font-size:x-small'>Image CB by Roulex 45 (self-made from Public domain, via Wikimedia Commons)</span><br/><br/>";
     };
     echo "</div>";
     
@@ -677,61 +677,61 @@ if (!$confirmed) {
     $entete .= "MIME-Version: 1.0". "\n";
     $entete .= 'Content-Type: multipart/mixed; boundary="'.$boundary.'";\r\n';
     if ($title==="mr") {
-      $texte = "M. ".$fname." ".$lname.",\n\n";
+      $texte = "Mr. ".$fname." ".$lname.",\n\n";
     } elseif ($title==="mme") {
-      $texte .= "Mme ".$fname." ".$lname.",\n\n";
+      $texte .= "Ms. ".$fname." ".$lname.",\n\n";
     }
-    $texte .= $welcome_email;
-    $texte .= "* Référence de votre commande ........... : " . $ref . "\n\n";
-    $texte .= "Vous trouverez ci-dessous un récapitulatif de votre inscription, ainsi que les détails vous permettant de procéder au paiement de celle-ci (à la fin).\n\n";
-    $texte .= "Bien cordialement,\n\n";
-    $texte .= "Le comité d'organisation.\n\n\n";  
-    $texte .= "RÉCAPITULATIF : \n\n";
-    $texte .= "* Prénom .......................... : " . $fname . "\n";
-    $texte .= "* Nom ............................. : " . $lname . "\n";
-    $texte .= "* Affiliation ..................... : " . $affiliation . "\n";
-    $texte .= "* Adresse ......................... : " . $address . "\n";
-    $texte .= "* Complément ...................... : " . $address2 . "\n";
-    $texte .= "* Code-Postal ..................... : " . $zip . "\n";
-    $texte .= "* Ville ........................... : " . $city . "\n";
-    $texte .= "* Pays ............................ : " . $country . "\n";
-    $texte .= "* E-Mail .......................... : " . $email . "\n";
-    $texte .= "* Téléphone ....................... : " . $phone . " \n";
+    $texte .= $welcome_email_en;
+    $texte .= "* Your reference ........................ : " . $ref . "\n\n";
+    $texte .= "Please find below a description of your registration options. Indications to proceed to the payment are provided at the end of the email.\n\n";
+    $texte .= "Best regards,\n\n";
+    $texte .= "The steering committee.\n\n\n";  
+    $texte .= "DESCRIPTION OF YOUR REGISTRATION: \n\n";
+    $texte .= "* First name ...................... : " . $fname . "\n";
+    $texte .= "* Last name ....................... : " . $lname . "\n";
+    $texte .= "* Institution ..................... : " . $affiliation . "\n";
+    $texte .= "* Address ......................... : " . $address . "\n";
+    $texte .= "* Address ......................... : " . $address2 . "\n";
+    $texte .= "* Zip code ........................ : " . $zip . "\n";
+    $texte .= "* City ............................ : " . $city . "\n";
+    $texte .= "* Country ......................... : " . $country . "\n";
+    $texte .= "* Email ........................... : " . $email . "\n";
+    $texte .= "* Phone ........................... : " . $phone . " \n";
     $texte .= "* Fax ............................. : " . $fax . "\n\n";
-    $texte .= "* Inscrit en tant que ............. : ";
+    $texte .= "* Registered as ................... : ";
     if ($status==$guest_status) {
-      $texte .= "Exonéré (gratuit)";
+      $texte .= "Exonerated (free)";
     } else {
       for ($i=0; $i<sizeof($code_status); $i++) {
         if ($i==$status) {
-          $texte .= $text_status[$i];
+          $texte .= $text_status_en[$i];
         }
       }
     }
     $texte .= "\n";
-    $texte .= "* Nombre d'accompagnants .......... : " . $nb_acc . "\n";
+    $texte .= "* Number of accompanying persons .... : " . $nb_acc . "\n";
     if ($gala==="1") {
-      $texte .= "* Participation au dîner de gala .. : Oui\n";
+      $texte .= "* Gala diner ...................... : Yes\n";
     } else {
-      $texte .= "* Participation au dîner de gala .. : Non\n";
+      $texte .= "* Gala diner ...................... : No\n";
     }
     if ($lunch_nb>0) {
-    $texte .= "* Vous avez réservé " . $lunch_nb . " déjeuner(s)";
+    $texte .= "* You have registered for " . $lunch_nb . " lunch(es) ";
       $texte .= "(";
       for ($i=0; $i < sizeof($lunchs_bd_names); $i++) {
-        if ($want_lunch[$i]==1) $texte .= $lunchs[$i]." ";
+        if ($want_lunch[$i]==1) $texte .= $lunchs_en[$i]." ";
       }
       $texte .= ")"."\n";
-    } else $texte .= "* Réservation de déjeuners ........ : Non\n";
-    $texte .= "* Activité, premier choix ......... : ".$activites[$activity1]."\n";
-    $texte .= "* Activité, second choix .......... : ".$activites[$activity2]."\n";
+    } else $texte .= "* You are not registered for lunch.\n";
+    $texte .= "* Activity, first choice .......... : ".$activites_en[$activity1]."\n";
+    $texte .= "* Activity, second choice ......... : ".$activites_en[$activity2]."\n";
     if (count($addquestions)!=0) {
-      $texte .="* Autres informations ............. : ";
+      $texte .="* Other informations ............. : ";
       for ($i=0; $i < sizeof($add_labels); $i++) {
         $res_query = mysql_query("SELECT `".$add_labels[$i]."` FROM ".$db_table." WHERE `ref`='".$ref."'");
         $res_query=mysql_fetch_array($res_query);
         if ($res_query[$add_labels[$i]]==="yes") {
-          $texte .= $add_questions[$i] .", ";
+          $texte .= $add_questions_en[$i] .", ";
         }
       }
       $texte .="\n";
@@ -739,35 +739,35 @@ if (!$confirmed) {
     mysql_close();
     
     if ($total==0) {
-      $texte .= "Il n'y a rien à payer.\n";
+      $texte .= "There is nothing to pay.\n";
     } else {
       if ($payment=="cheque") {
-        $texte .= "* Mode de Paiement ................ : Chèque\n\n";
+        $texte .= "* Payment by ...................... : Check\n\n";
       } elseif ($payment=="transfer") {
-        $texte .= "* Mode de Paiement ................ : Virement\n\n";
+        $texte .= "* Payment by ...................... : Transfer\n\n";
       } elseif ($payment=="order") {
-        $texte .= "* Mode de Paiement ................ : Bon de commande\n\n";
+        $texte .= "* Payment by ...................... : Bon de commande\n\n";
       } elseif ($payment=="credit") {
-        $texte .= "* Mode de Paiement ................ : Carte bancaire\n";
+        $texte .= "* Payment by ...................... : Credit card\n";
       } elseif ($payment=="cash") {
-        $texte .= "* Mode de Paiement ................ : Liquide\n";
+        $texte .= "* Payment by ...................... : Cash\n";
       }
-      $texte .= "* Frais d'inscription ............. : " . $rgl_insc . " euros\n";
-      $texte .= "* Déjeuners ....................... : " . $rgl_midi . " euros\n";
-      $texte .= "* Accompagnants ................... : " . $rgl_acc . " euros\n";
-      $texte .= "* Repas de gala ................... : " . $rgl_gala . " euros\n";
-      $texte .= "* PRIX TOTAL ...................... : " . $total . " euros\n\n";
+      $texte .= "* Registration fees ............... : " . $rgl_insc . " euros\n";
+      $texte .= "* Lunch(es) ....................... : " . $rgl_midi . " euros\n";
+      $texte .= "* Accompanying persons ............ : " . $rgl_acc . " euros\n";
+      $texte .= "* Gala diner ...................... : " . $rgl_gala . " euros\n";
+      $texte .= "* TOTAL ........................... : " . $total . " euros\n\n";
     
       if ($payment=="cheque") {
-        $texte .= $cheque_message;
+        $texte .= $cheque_message_en;
       } elseif ($payment=="transfer") {
-        $texte .= $transfer_message;
+        $texte .= $transfer_message_en;
       } elseif ($payment=="order") {
         $texte .= $order_message;
       } elseif ($payment=="liquide") {
-        $texte .= $cash_message;
+        $texte .= $cash_message_en;
       }
-      $texte .= "* Référence de votre commande ........... : " . $ref . "\n\n";
+      $texte .= "* Reference of your registration ........ : " . $ref . "\n\n";
     }
 
     // Envoi de l'email
@@ -775,7 +775,7 @@ if (!$confirmed) {
     $message .= "Content-Type: text/plain;"."\n";
     $message .= 'Content-Transfer-Encoding: 7bit'."\n";
     $message .= $texte;
-    $message .= "En cas de problème, contactez : ".$contact_email.".\n";
+    $message .= "In case of problem, please contact: ".$contact_email.".\n";
     $message .= "--" .$boundary. "\n";
     $message .= "Content-Type: application/pdf; name=\"facture_".$ref.".pdf\"\r\n";
     $message .= "Content-Transfer-Encoding: base64\r\n";
