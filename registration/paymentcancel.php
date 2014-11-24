@@ -41,10 +41,11 @@ require_once("../inc/config.php");
 require_once("../inc/connect.php");
 if (isset($_REQUEST['ref'])) {
 print ("Vous avez annulé le paiement de la commande référence <strong>".$_REQUEST['ref']."</strong>.
-Vous êtes toutefois enregistré comme participant aux JdS : vous pourrez remplir à nouveau ultérieurement le formulaire d'inscription pour mettre à jour votre inscription, procéder au paiement CB ou modifier votre mode de paiement.
+Vous êtes toutefois enregistré comme participant à la manifestation : vous pourrez remplir à nouveau ultérieurement le formulaire d'inscription pour mettre à jour votre inscription, procéder au paiement CB ou modifier votre mode de paiement.
 En cas de difficulté ou de question, merci de contacter <a href='mailto:".$contact_email."'>".$contact_email."</a>.");
+print ("Your payment has been canceled but you are still registered to the conference. The reference of your registration is <strong>".$_REQUEST['ref']."</strong>. If you want to proceed later to the payment, you can still do it by filling in the registration form again: your registration will be updated and you will be able to access the credit card platform again. If you have any question, please contact <a href='mailto:".$contact_email."'>".$contact_email."</a>.");
 }
-print("<center><a href='".$website_url."'>Retour sur la page d'accueil des JdS</a></center>");
+print("<center><a href='".$website_url."'>Retour sur la page d'accueil de la manifestation</a></center>");
 print("<center><a href='".$current_url."'>Retour au formulaire d'inscription</a></center>");
 ?>
 		</div> <!-- container -->

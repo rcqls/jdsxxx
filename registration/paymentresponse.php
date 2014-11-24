@@ -43,13 +43,15 @@ if (isset($_REQUEST['ref']) && isset($_REQUEST['res'])) {
 if ($_REQUEST['res']==1) {
 print ("Merci pour votre inscription.
 Le paiement de la commande référence <strong>".$_REQUEST['ref']."</strong> est enregistré. Vous allez recevoir un email de confirmation de votre inscription.");
+print ("Thank you for your registration. Your reference is <strong>".$_REQUEST['ref']."</strong> and your payment has been received. You will receive a confirmation by email.");
 } else {
 print ("Le paiement de la commande référence <strong>".$_REQUEST['ref']."</strong> a été refusé.
 Vous allez recevoir un email récapitulatif de votre inscription : nous vous suggérons de procéder à nouveau à l'inscription pour retenter un paiement par carte bancaire ou bien pour modifier votre mode de paiement.
 En cas de difficulté ou de question, merci de contacter <a href='mailto:".$contact_email."'>".$contact_email."</a>.");
+print ("Your payment has been canceled but you are still registered to the conference. The reference of your registration is <strong>".$_REQUEST['ref']."</strong>. If you want to proceed later to the payment, you can still do it by filling in the registration form again: your registration will be updated and you will be able to access the credit card platform again. If you have any question, please contact <a href='mailto:".$contact_email."'>".$contact_email."</a>.");
 }
 }
-print("<center><a href='".$website_url."'>Retour sur la page d'accueil des JdS</a></center>");
+print("<center><a href='".$website_url."'>Retour sur la page d'accueil de la manifestation</a></center>");
 print("<center><a href='".$current_url."'>Retour au formulaire d'inscription</a></center>");
 ?>
 		</div> <!-- container -->

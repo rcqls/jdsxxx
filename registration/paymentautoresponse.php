@@ -17,7 +17,8 @@ require_once('../inc/config.php');
 require_once('../inc/connect.php');
 
 // Test what is coming back from sg website
-if (isset($_REQUEST['ref']) && isset($_REQUEST['res']) && (($_SERVER['REMOTE_ADDR']=="5.39.72.221")||($_SERVER['REMOTE_ADDR']=="178.32.97.133" ))) {
+// if (isset($_REQUEST['ref']) && isset($_REQUEST['res']) && (($_SERVER['REMOTE_ADDR']=="5.39.72.221")||($_SERVER['REMOTE_ADDR']=="178.32.97.133" ))) {
+if (isset($_REQUEST['ref']) && isset($_REQUEST['res'])) {
 
 // Print "OK": This is the answer waited by the sogenactif form
 // You must keep this because, otherwise, the sogenactif form repeats the script each 2 minutes or so during an hour... 
