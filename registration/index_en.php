@@ -472,7 +472,7 @@ if (!$confirmed) {
 		echo '</div>';
 		echo '<div class="radio">';
 			echo '<label>';
-				echo "<input type='radio' name='gala' value='1' id='gala'";
+				echo "<input type='radio' name='gala' value='0' id='gala'";
 				if($gala==="0") echo " checked"; else echo " unchecked";
 				echo "/> No.";
 			echo '</label>';
