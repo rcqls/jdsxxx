@@ -118,7 +118,7 @@ if(mysql_num_rows($res) > 0) {
 } else
 	exit('Aucun inscrit.');
 
-	echo '<a href="'.$website_url.'/'.$fileName.'">Télécharger le fichier.</a>';
+	echo '<a href="'.$fileName.'">Télécharger le fichier.</a>';
 ?>
 		</div> <!-- container -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
