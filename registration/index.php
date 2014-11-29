@@ -441,26 +441,16 @@ if (!$confirmed) {
 			echo '</div>';
 		echo '</div>';
   }
+
+  echo'<input type="hidden" name="nbacc">';
+
+  echo "<h3>Réception (gratuite) du jeudi soir</h3>";
   if ($verified) {
-    echo "Je serai accompagné(e) de : ".$nb_acc." personne(s).<input type='hidden' style='font-size:small' name='nbacc' value='".$nb_acc."'/>";
+   if($gala==="1") {
+      echo "Je participerai à la réception.<input type='hidden' name='gala' value='".$gala."'/>";
+    } else echo "Je ne participerai pas à la réception.<input type='hidden' name='gala' value='".$gala."'/>";
   } else {
-    echo "<p>Vous pouvez également inscrire un ou plusieurs accompagnants. L'inscription d'un accompagnant lui donne droit de participer au dîner de gala et aux activités sociales. Le coût de l'inscription de chaque accompagnant est fixé à ".$acc_price." euros.";
-    echo '<div class="form-group">';
-			echo "<label for='nbacc' class='col-sm-6'>Nombre d'accompagnants &nbsp;</label>";
-			echo '<div class="col-sm-6">';
-				echo '<input class="form-control" name="nbacc" placeholder="Accompagnants" size="2" type="text" value="'.$nb_acc.'">';
-			echo '</div>';
-    echo '</div>';
-  }
-  
-  // Dîner de gala
-  echo "<h3>Dîner de gala (".$gala_diner_date.", ".$gala_diner_price." euros)</h3>";
-  if ($verified) {
-    if($gala==="1") {
-      echo "Je participerai au dîner de gala.<input type='hidden' name='gala' value='".$gala."'/>";
-    } else echo "Je ne participerai pas au dîner de gala.<input type='hidden' name='gala' value='".$gala."'/>";
-  } else {
-    echo "Je participerai au dîner de gala : ";
+    echo "Je participerai à la réception : ";
     echo '<div class="radio">';
 			echo '<label>';
 				echo '<input type="radio" name="gala" id="gala" value="1" ';
@@ -508,31 +498,8 @@ if (!$confirmed) {
   }
   
   // Activités sociales
-  echo "<h3>Activités sociales (gratuites)</h3>";
-  if($verified) {
-    echo "Activité sociale (choix 1) : ".$activites[$activity1].".<br />";
-    echo " <input style='font-size: small' type='hidden' name='activity1' value='".$activity1."'/>";
-    echo "Activité sociale (choix 2) : ".$activites[$activity2].".<br />";
-    echo " <input style='font-size: small' type='hidden' name='activity2' value='".$activity2."'/>";
-  } else {
-    echo "<strong>Activités sociales ".$social_activity_date."</strong> : afin de vous satisfaire au mieux et faciliter l'organisation des activités sociales, nous vous proposons de formuler deux choix par ordre de priorité parmi les activités suivantes. Ceci nous permettra de mieux dimensionner les différents groupes.<br>";
-    echo "&nbsp; &nbsp; <b>Activité sociale (choix 1) :</b> <select name='activity1' class='form-control'>";
-    for ($i=0; $i<sizeof($activites); $i++) {
-      if ($i==$activity1) {
-        echo "<option selected style='font-size: small' value='".$i."'>".$activites[$i]."</option>";
-      } else {
-        echo "<option style='font-size: small' value='".$i."'>".$activites[$i]."</option>";
-      }
-    }
-    echo "</select>";
-    echo "&nbsp; &nbsp; <b>Activité sociale (choix 2) :</b> <select name='activity2' class='form-control'>";
-    for ($i=0; $i<sizeof($activites); $i++) {
-      echo "<option style='font-size: small' value='".$i."'";
-      if ($i==$activity2) echo ' selected ';
-      echo ">".$activites[$i]."</option>";
-    }
-    echo "</select>";
-  }
+   echo'<input type="hidden" name="activity1">';
+   echo'<input type="hidden" name="activity2">';
 
   // Vérifié par le programme : le formulaire est à confirmer par l'utilisateur avec son paiement et des questions additionnelles
   if ($verified and !$confirmed) {
@@ -542,10 +509,9 @@ if (!$confirmed) {
     echo "<table style='font-size: small; display:inline'>";
     echo "<tr><td><strong>Inscription</strong> : </td><td>&nbsp;</td><td><input class='rgl' name='rgl_insc' type='text' size='5' value='".$rgl_insc."' style='text-align:right' readonly/> euros</td></tr>";
     echo "<tr><td><strong>Repas (".$lunch_nb.")</strong> : </td><td> + </td><td><input class='rgl' name='rgl_midi' type='text' size='5' value='".$rgl_midi."' style='text-align:right'  readonly/> euros</td></tr>";
-    echo "<tr><td><strong>Repas de gala</strong> : </td><td> + </td><td><input class='rgl' name='rgl_gala' type='text' size='5' value='";
+	echo "<tr><td><strong>Réception du jeudi soir</strong> : </td><td> + </td><td><input class='rgl' name='rgl_gala' type='text' size='5' value='";
     if ($gala==1) echo $rgl_gala; else echo 0;
     echo "' style='text-align:right'  readonly/> euros</td></tr>";
-    echo "<tr><td><strong>Accompagnants (".$nb_acc.")</strong> : </td><td> + </td><td><input class='rgl' name='rgl_acc' type='text' size='5' value='".$rgl_acc."' style='text-align:right'  readonly/> euros</td></tr>";
     echo "<tr><td><strong>Total général</strong> : </td><td> = </td><td><input class='rgl' name='total' type='text' size='5' value='".$total."' style='text-align:right'  readonly/> euros</td></tr>";
     echo "<tr><td><strong>Mode de paiement * </strong> : </td><td>&nbsp;</td><td><select name='payment'>";
     for ($i=0; $i < sizeof($pay_desc); $i++) {
@@ -709,11 +675,10 @@ if (!$confirmed) {
       }
     }
     $texte .= "\n";
-    $texte .= "* Nombre d'accompagnants .......... : " . $nb_acc . "\n";
-    if ($gala==="1") {
-      $texte .= "* Participation au dîner de gala .. : Oui\n";
+	if ($gala==="1") {	
+      $texte .= "* Participation à la réception du jeudi soir .. : Oui\n";
     } else {
-      $texte .= "* Participation au dîner de gala .. : Non\n";
+      $texte .= "* Participation à la réception du jeudi soir .. : Non\n";
     }
     if ($lunch_nb>0) {
     $texte .= "* Vous avez réservé " . $lunch_nb . " déjeuner(s)";
@@ -723,8 +688,6 @@ if (!$confirmed) {
       }
       $texte .= ")"."\n";
     } else $texte .= "* Réservation de déjeuners ........ : Non\n";
-    $texte .= "* Activité, premier choix ......... : ".$activites[$activity1]."\n";
-    $texte .= "* Activité, second choix .......... : ".$activites[$activity2]."\n";
     if (count($addquestions)!=0) {
       $texte .="* Autres informations ............. : ";
       for ($i=0; $i < sizeof($add_labels); $i++) {
@@ -752,10 +715,7 @@ if (!$confirmed) {
       } elseif ($payment=="cash") {
         $texte .= "* Mode de Paiement ................ : Liquide\n";
       }
-      $texte .= "* Frais d'inscription ............. : " . $rgl_insc . " euros\n";
-      $texte .= "* Déjeuners ....................... : " . $rgl_midi . " euros\n";
-      $texte .= "* Accompagnants ................... : " . $rgl_acc . " euros\n";
-      $texte .= "* Repas de gala ................... : " . $rgl_gala . " euros\n";
+      $texte .= "* Frais d'inscription ............. : " . $rgl_insc . " euros\n";     
       $texte .= "* PRIX TOTAL ...................... : " . $total . " euros\n\n";
     
       if ($payment=="cheque") {

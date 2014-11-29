@@ -341,7 +341,7 @@ if (!$confirmed) {
   } else {
 		echo '<div class="form-group">';
      if (empty($email) & $submitted) echo "&nbsp;<div class='col-sm-2'><mark>Compléter</mark></div> &nbsp;";
-			echo '<label for="email" class="col-sm-4">Email (un différent pour chaque inscrit)* &nbsp;</label>';
+			echo '<label for="email" class="col-sm-4">Email (a diffrent one for each registered person)* &nbsp;</label>';
 			echo '<div class="col-sm-4">';
 				echo '<input class="form-control" name="email" placeholder="Email" size="50" type="text" value="'.$email.'">';
 			echo '</div>';
@@ -441,26 +441,15 @@ if (!$confirmed) {
 			echo '</div>';
 		echo '</div>';
   }
-  if ($verified) {
-    echo $nb_acc." person(s) will accompany me.<input type='hidden' style='font-size:small' name='nbacc' value='".$nb_acc."'/>";
-  } else {
-    echo "<p>You can also register one or several accompanying persons. The registration of an accompanying person will give her/him the right to participate to the gala diner and to the social activities. The registration fees for an accompanying person is ".$acc_price." euros.";
-    echo '<div class="form-group">';
-			echo "<label for='nbacc' class='col-sm-6'>Number of accompanying persons &nbsp;</label>";
-			echo '<div class="col-sm-6">';
-				echo '<input class="form-control" name="nbacc" placeholder="Accompanying persons" size="2" type="text" value="'.$nb_acc.'">';
-			echo '</div>';
-    echo '</div>';
-  }
-  
-  // Dîner de gala
-  echo "<h3>Gala diner (".$gala_diner_date_en.", ".$gala_diner_price." euros)</h3>";
+  echo'<input type="hidden" name="nbacc">';
+
+  echo "<h3>Thurday reception (free)</h3>";
   if ($verified) {
     if($gala==="1") {
-      echo "I will participate to the gala diner.<input type='hidden' name='gala' value='".$gala."'/>";
-    } else echo "I will not participate to the gala diner.<input type='hidden' name='gala' value='".$gala."'/>";
+      echo "I will participate to the Thursday reception.<input type='hidden' name='gala' value='".$gala."'/>";
+    } else echo "I will not participate to the Thursday reception.<input type='hidden' name='gala' value='".$gala."'/>";
   } else {
-    echo "I will participate to the gala diner: ";
+    echo "I will participate to the Thursday reception: ";
     echo '<div class="radio">';
 			echo '<label>';
 				echo '<input type="radio" name="gala" id="gala" value="1" ';
@@ -508,31 +497,8 @@ if (!$confirmed) {
   }
   
   // Activités sociales
-  echo "<h3>Social activities (free)</h3>";
-  if($verified) {
-    echo "Social activity (first choice): ".$activites_en[$activity1].".<br />";
-    echo " <input style='font-size: small' type='hidden' name='activity1' value='".$activity1."'/>";
-    echo "Social activity (second choice): ".$activites_en[$activity2].".<br />";
-    echo " <input style='font-size: small' type='hidden' name='activity2' value='".$activity2."'/>";
-  } else {
-    echo "<strong>Social activities ".$social_activity_date_en."</strong>: in order to ease the organization, please provide two choices by priority order for social activities.<br>";
-    echo "&nbsp; &nbsp; <b>Social activity (first choice):</b> <select name='activity1' class='form-control'>";
-    for ($i=0; $i<sizeof($activites); $i++) {
-      if ($i==$activity1) {
-        echo "<option selected style='font-size: small' value='".$i."'>".$activites_en[$i]."</option>";
-      } else {
-        echo "<option style='font-size: small' value='".$i."'>".$activites_en[$i]."</option>";
-      }
-    }
-    echo "</select>";
-    echo "&nbsp; &nbsp; <b>Social activity (second choice):</b> <select name='activity2' class='form-control'>";
-    for ($i=0; $i<sizeof($activites); $i++) {
-      echo "<option style='font-size: small' value='".$i."'";
-      if ($i==$activity2) echo ' selected ';
-      echo ">".$activites_en[$i]."</option>";
-    }
-    echo "</select>";
-  }
+  echo'<input type="hidden" name="activity1">';
+   echo'<input type="hidden" name="activity2">';
 
   // Vérifié par le programme : le formulaire est à confirmer par l'utilisateur avec son paiement et des questions additionnelles
   if ($verified and !$confirmed) {
@@ -709,11 +675,10 @@ if (!$confirmed) {
       }
     }
     $texte .= "\n";
-    $texte .= "* Number of accompanying persons .... : " . $nb_acc . "\n";
-    if ($gala==="1") {
-      $texte .= "* Gala diner ...................... : Yes\n";
+	if ($gala==="1") {
+      $texte .= "* Thurday reception ...................... : Yes\n";
     } else {
-      $texte .= "* Gala diner ...................... : No\n";
+      $texte .= "* Thurday reception ...................... : No\n";
     }
     if ($lunch_nb>0) {
     $texte .= "* You have registered for " . $lunch_nb . " lunch(es) ";
@@ -723,8 +688,6 @@ if (!$confirmed) {
       }
       $texte .= ")"."\n";
     } else $texte .= "* You are not registered for lunch.\n";
-    $texte .= "* Activity, first choice .......... : ".$activites_en[$activity1]."\n";
-    $texte .= "* Activity, second choice ......... : ".$activites_en[$activity2]."\n";
     if (count($addquestions)!=0) {
       $texte .="* Other informations ............. : ";
       for ($i=0; $i < sizeof($add_labels); $i++) {
@@ -753,9 +716,6 @@ if (!$confirmed) {
         $texte .= "* Payment by ...................... : Cash\n";
       }
       $texte .= "* Registration fees ............... : " . $rgl_insc . " euros\n";
-      $texte .= "* Lunch(es) ....................... : " . $rgl_midi . " euros\n";
-      $texte .= "* Accompanying persons ............ : " . $rgl_acc . " euros\n";
-      $texte .= "* Gala diner ...................... : " . $rgl_gala . " euros\n";
       $texte .= "* TOTAL ........................... : " . $total . " euros\n\n";
     
       if ($payment=="cheque") {
