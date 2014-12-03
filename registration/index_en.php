@@ -1,3 +1,4 @@
+
 <html dir="ltr" lang="fr-FR">
 <head>
 	<meta charset="utf-8">
@@ -407,8 +408,8 @@ if (!$confirmed) {
     echo "See <a href='".$inscription_url_en."'>here</a> for further details.</div><br />";
     
     echo '<div class="form-group">';
-			echo "<label for='status' class='col-sm-3 control-label'>My registration is made as &nbsp;</label>";
-			echo '<div class="col-sm-8">';
+			echo "<label for='status' class='col-sm-5 control-label'>My registration is made as &nbsp;</label>";
+			echo '<div class="col-sm-4">';
 				echo "<select class='form-control' name='status'>";
 					if (time()<strtotime($deadline_fees)) {
 						for ($i=0; $i<sizeof($code_status); $i++) {
@@ -434,8 +435,8 @@ if (!$confirmed) {
 						echo "<option value='".$i."'>Exonerated participant (0 euros)</option>";
 					}
 				echo "</select>";
-			echo "</div>";
-			echo "<label for='fcode' class='col-sm-3 control-label'>If you are an exonerated participant, please enter here your exoneration code &nbsp;</label>";
+			echo "</div></div><div class='form-group'>";
+			echo "<label for='fcode' class='col-sm-4 control-label'>If you are an exonerated participant, please enter here your exoneration code &nbsp;</label>";
 			echo '<div class="col-sm-4">';
 				echo "<input class='form-control' name='fcode' placeholder='Exoneration code' size='50' type='text' value='".$fcode."'>";
 			echo '</div>';
