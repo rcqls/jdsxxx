@@ -233,7 +233,7 @@ if (!$confirmed) {
 					echo ">Mr.</option>";
 					echo "<option value='mme'";
 					if($title==="mme") echo "selected";
-					echo ">Ms./option>";
+					echo ">Ms.</option>";
 				echo "</select>";
 			echo "</div>";
 		echo '</div>';
