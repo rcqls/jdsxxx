@@ -1,3 +1,4 @@
+
 <html dir="ltr" lang="fr-FR">
 <head>
 	<meta charset="utf-8">
@@ -281,7 +282,7 @@ if (!$confirmed) {
     echo $address."<input type='hidden' name='address' style='font-size:small' value='".$address."'/><br />";
   } else {
     echo '<div class="form-group">';
-			if (empty($address) & $submitted) echo "&nbsp;<div class='col-sm-1'><mark>Compléter</mark></div> &nbsp;";
+			if (empty($address) & $submitted) echo "&nbsp;<div class='col-sm-2'><mark>Compléter</mark></div> &nbsp;";
 			echo '<label for="address" class="col-sm-2">Adresse* &nbsp;</label>';
 			echo '<div class="col-sm-6">';
 				echo '<input class="form-control" name="address" placeholder="Adresse" size="75" type="text" value="'.$address.'">';
@@ -304,8 +305,8 @@ if (!$confirmed) {
   } else {
      echo '<div class="form-group">';
      if (empty($zip) & $submitted) echo "&nbsp;<div class='col-sm-3'><mark>Compléter</mark></div> &nbsp;";
-			echo '<label for="zip" class="col-sm-4">Code Postal* &nbsp;</label>';
-			echo '<div class="col-sm-4">';
+			echo '<label for="zip" class="col-sm-6">Code Postal* &nbsp;</label>';
+			echo '<div class="col-sm-6">';
 				echo '<input class="form-control" name="zip" placeholder="Code Postal" size="10" type="text" value="'.$zip.'">';
 			echo '</div>';
     echo '</div>';
@@ -341,7 +342,7 @@ if (!$confirmed) {
   } else {
 		echo '<div class="form-group">';
      if (empty($email) & $submitted) echo "&nbsp;<div class='col-sm-2'><mark>Compléter</mark></div> &nbsp;";
-			echo '<label for="email" class="col-sm-4">E-mail (un différent pour chaque inscrit)* &nbsp;</label>';
+			echo '<label for="email" class="col-sm-6">E-mail (un différent pour chaque inscrit)* &nbsp;</label>';
 			echo '<div class="col-sm-4">';
 				echo '<input class="form-control" name="email" placeholder="E-mail" size="50" type="text" value="'.$email.'">';
 			echo '</div>';
@@ -407,8 +408,8 @@ if (!$confirmed) {
     echo "Voir <a href='".$inscription_url."'>ici</a> pour plus de détails.</div><br />";
     
     echo '<div class="form-group">';
-			echo "<label for='status' class='col-sm-3 control-label'>Je m'inscris en tant que &nbsp;</label>";
-			echo '<div class="col-sm-8">';
+			echo "<label for='status' class='col-sm-4 control-label'>Je m'inscris en tant que &nbsp;</label>";
+			echo '<div class="col-sm-4">';
 				echo "<select class='form-control' name='status'>";
 					if (time()<strtotime($deadline_fees)) {
 						for ($i=0; $i<sizeof($code_status); $i++) {
@@ -434,8 +435,8 @@ if (!$confirmed) {
 						echo "<option value='".$i."'>Exonéré (0 euros)</option>";
 					}
 				echo "</select>";
-			echo "</div>";
-			echo "<label for='fcode' class='col-sm-3 control-label'>Si vous êtes exonéré, rentrez votre code d'exonération &nbsp;</label>";
+			echo "</div></div><div class='form-group'>";
+			echo "<label for='fcode' class='col-sm-4 control-label'>Si vous êtes exonéré, rentrez votre code d'exonération &nbsp;</label>";
 			echo '<div class="col-sm-4">';
 				echo "<input class='form-control' name='fcode' placeholder='Code exonération' size='50' type='text' value='".$fcode."'>";
 			echo '</div>';
@@ -539,7 +540,7 @@ if (!$confirmed) {
     echo "<h3>Règlement</h3>";
     echo "<b>Annulation :</b><br />";
     echo "Le remboursement des droits d'inscription sera possible sur demande écrite faite à l'adresse e-mail <a href='mailto:".$contact_email."'>".$contact_email."</a> avant le ".$remb_deadline.". Il donnera lieu à une retenue de ".$remb_penalty." euros. Aucun remboursement ne sera effectué après cette date.<br />";
-    echo "<table style='font-size: small; display:inline'>";
+    echo "<table style='font-size: small; display:inline; border:none;'>";
     echo "<tr><td><strong>Inscription</strong> : </td><td>&nbsp;</td><td><input class='rgl' name='rgl_insc' type='text' size='5' value='".$rgl_insc."' style='text-align:right' readonly/> euros</td></tr>";
     echo "<tr><td><strong>Repas (".$lunch_nb.")</strong> : </td><td> + </td><td><input class='rgl' name='rgl_midi' type='text' size='5' value='".$rgl_midi."' style='text-align:right'  readonly/> euros</td></tr>";
     echo "<tr><td><strong>Repas de gala</strong> : </td><td> + </td><td><input class='rgl' name='rgl_gala' type='text' size='5' value='";
