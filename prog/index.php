@@ -85,7 +85,8 @@ $dayres2 = mysql_query($dayquery) or die('Erreur SQL !'.$dayquery.'</br>'.mysql_
 						while ($the_session=mysql_fetch_array($sessionres)) {
 							$sessionid = $the_session['id'];
 							echo "<center><b>".utf8_encode($the_session['name'])."</b> (".utf8_encode($the_session['room']).")<br />";
-							echo "Modérateur : <em>".utf8_encode($the_session['chair'])."</em></center>";
+							if ($the_session['chair'] != "")
+                echo "Modérateur : <em>".utf8_encode($the_session['chair'])."</em></center>";
   
 							$papersquery = 'SELECT P.id, P.title, P.isUploaded FROM `Paper` P' . ' WHERE P.id_conf_session=' . $sessionid . ' ORDER BY P.position_in_session ASC';
 							$papersres = mysql_query($papersquery) or die('Erreur SQL !'.$papersquery.'</br>'.mysql_error());
