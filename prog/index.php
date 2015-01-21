@@ -78,7 +78,7 @@ $dayres2 = mysql_query($dayquery) or die('Erreur SQL !'.$dayquery.'</br>'.mysql_
 				while ($the_slot=mysql_fetch_array($slotres)) {
 					$slotid = $the_slot['id'];
 					echo "<h4>".date('H',strtotime($the_slot['begin']))."h".date('i',strtotime($the_slot['begin']))."-".date('H',strtotime($the_slot['end']))."h".date('i',strtotime($the_slot['end']))."</h4>";
-					$sessionquery= 'SELECT S.name, S.room, S.chair, S.id FROM `ConfSession` S' . ' WHERE S.id_slot=' . $slotid . ' ORDER BY S.room ASC';
+					$sessionquery= 'SELECT S.name, S.room, S.chair, S.id FROM `ConfSession` S' . ' WHERE S.id_slot=' . $slotid . ' ORDER BY S.id ASC';
 					$sessionres=mysql_query($sessionquery) or die('Erreur SQL !'.$sessionquery.'</br>'.mysql_error());
 
 					if (mysql_num_rows($sessionres)) {
