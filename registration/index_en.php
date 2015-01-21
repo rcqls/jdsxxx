@@ -342,7 +342,7 @@ if (!$confirmed) {
   } else {
 		echo '<div class="form-group">';
      if (empty($email) & $submitted) echo "&nbsp;<div class='col-sm-2'><mark>Compléter</mark></div> &nbsp;";
-			echo '<label for="email" class="col-sm-4">Email (un différent pour chaque inscrit)* &nbsp;</label>';
+			echo '<label for="email" class="col-sm-4">Email (one for each registration)* &nbsp;</label>';
 			echo '<div class="col-sm-4">';
 				echo '<input class="form-control" name="email" placeholder="Email" size="50" type="text" value="'.$email.'">';
 			echo '</div>';
