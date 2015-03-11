@@ -599,7 +599,7 @@ if (!$confirmed) {
   $check="SELECT * FROM `".$db_table."` WHERE `email`='".$email."'";
   $res = mysql_query($check);
   if ($one_res=mysql_fetch_object($res)) {
-    if (($one_res->fees!=$fees) && ($one_res->res==="1")) {
+    if (($one_res->fees!=$total) && ($one_res->res==="1")) {
     $ok=0;
     echo "<div class='alert alert-danger' role='alert'>You are already registered (your email already exists in our database) and you have already paid. If you want to change your options and that it affects your registration fees you must contact us at <a href='mailto:".$contact_email."'>".$contact_email."</a> and describe us your modification request.";
     } else {
