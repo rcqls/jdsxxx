@@ -565,7 +565,7 @@ if (!$confirmed) {
   $check="SELECT * FROM `".$db_table."` WHERE `email`='".$email."'";
   $res = mysql_query($check);
   if ($one_res=mysql_fetch_object($res)) {
-    if (($one_res->fees!=$fees) && ($one_res->res==="1")) {
+    if (($one_res->fees!=$total) && ($one_res->res==="1")) {
     $ok=0;
     echo "<div class='alert alert-danger' role='alert'>Vous &ecirc;tes déjà enregistré(e) (adresse e-mail existante dans la base de données) et vous avez déjà payé. Le montant des frais que vous déclarez a changé : veuillez nous contacter à <a href='mailto:".$contact_email."'>".$contact_email."</a> pour faire une demande de modifications de vos options.";
     } else {
