@@ -72,7 +72,7 @@ $dayres2 = mysql_query($dayquery) or die('Erreur SQL !'.$dayquery.'</br>'.mysql_
 			$sel_day=$the_day['slot_date'];
 			$slotquery = 'SELECT C.id, C.slot_date, C.begin, C.end FROM `Slot` C' . ' WHERE C.slot_date="' . $sel_day . '" ORDER BY C.begin ASC';
 			$slotres = mysql_query($slotquery) or die('Erreur SQL !'.$slotquery.'</br>'.mysql_error());
-			echo "<a name='".$sel_day."'></a><center><h2>Programme du ".day_in_french(date('l',strtotime($sel_day)))." ".date('d',strtotime($sel_day))." ".month_in_french(date('F',strtotime($sel_day)))."</h2></center>";
+			echo "<a name='".$sel_day."'></a><center><h2 class='text-info'>Programme du ".day_in_french(date('l',strtotime($sel_day)))." ".date('d',strtotime($sel_day))." ".month_in_french(date('F',strtotime($sel_day)))."</h2></center>";
 
 			if (mysql_num_rows($slotres)) {
 				while ($the_slot=mysql_fetch_array($slotres)) {
@@ -84,9 +84,14 @@ $dayres2 = mysql_query($dayquery) or die('Erreur SQL !'.$dayquery.'</br>'.mysql_
 					if (mysql_num_rows($sessionres)) {
 						while ($the_session=mysql_fetch_array($sessionres)) {
 							$sessionid = $the_session['id'];
-							echo "<center><b>".utf8_encode($the_session['name'])."</b> (".utf8_encode($the_session['room']).")<br />";
+							echo "<center><b><p class='text-danger'>".utf8_encode($the_session['name'])."</b>";
+							if ($the_session['room'] != "") {
+								echo "(".utf8_encode($the_session['room']).")<br />";
+							} else 
+								echo "<br />";
 							if ($the_session['chair'] != "")
-                echo "Modérateur : <em>".utf8_encode($the_session['chair'])."</em></center>";
+                echo "Modérateur : <em>".utf8_encode($the_session['chair'])."</em>";
+              echo "</p></center>";
   
 							$papersquery = 'SELECT P.id, P.title, P.isUploaded FROM `Paper` P' . ' WHERE P.id_conf_session=' . $sessionid . ' ORDER BY P.position_in_session ASC';
 							$papersres = mysql_query($papersquery) or die('Erreur SQL !'.$papersquery.'</br>'.mysql_error());
