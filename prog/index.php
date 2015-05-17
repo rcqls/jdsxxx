@@ -86,7 +86,7 @@ $dayres2 = mysql_query($dayquery) or die('Erreur SQL !'.$dayquery.'</br>'.mysql_
 							$sessionid = $the_session['id'];
 							echo "<center><b><p class='text-danger'>".utf8_encode($the_session['name'])."</b>";
 							if ($the_session['room'] != "") {
-								echo "(".utf8_encode($the_session['room']).")<br />";
+								echo " (".utf8_encode($the_session['room']).")<br />";
 							} else 
 								echo "<br />";
 							if ($the_session['chair'] != "")
