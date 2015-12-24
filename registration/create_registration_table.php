@@ -34,7 +34,7 @@ $table_creation .="`res` tinyint(1) DEFAULT 0,";
 $table_creation .="`date_first` varchar(16),";
 $table_creation .="`date_modif` varchar(16),";
 $table_creation .="PRIMARY KEY  (`index`)";
-$table_creation .=") ENGINE=MyISAM DEFAULT CHARSET=latin1;";
+$table_creation .=") ENGINE=MyISAM;";
 
 $db=mysql_connect($db_server,$db_user,$db_pass) or die('Erreur de connexion '.mysql_error());
 mysql_select_db($db_user,$db) or die('Erreur de sélection '.mysql_error());
