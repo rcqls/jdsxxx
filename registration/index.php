@@ -713,6 +713,7 @@ if (!$confirmed) {
     $texte .= "* Nombre d'accompagnants .......... : " . $nb_acc . "\n";
     if ($gala==="1") {
       $texte .= "* Participation au dîner de gala .. : Oui\n";
+      $texte .= "Merci de contacter le plus rapidement possible jds2016@sfds.asso.fr pour tout régime alimentaire particulier.\n";
     } else {
       $texte .= "* Participation au dîner de gala .. : Non\n";
     }

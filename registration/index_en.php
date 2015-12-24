@@ -713,6 +713,7 @@ if (!$confirmed) {
     $texte .= "* Number of accompanying persons .... : " . $nb_acc . "\n";
     if ($gala==="1") {
       $texte .= "* Gala diner ...................... : Yes\n";
+      $texte .= "Pleace contact us jds2016@sfds.asso.fr for special diets.\n";
     } else {
       $texte .= "* Gala diner ...................... : No\n";
     }
