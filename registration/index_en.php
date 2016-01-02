@@ -455,13 +455,13 @@ if (!$confirmed) {
   }
   
   // Dîner de gala
-  echo "<h3>Gala diner (".$gala_diner_date_en.", ".$gala_diner_price." euros)</h3>";
+  echo "<h3>Social night at BDT (".$gala_diner_date_en.", ".$gala_diner_price." euros)</h3>";
   if ($verified) {
     if($gala==="1") {
-      echo "I will participate to the gala diner.<input type='hidden' name='gala' value='".$gala."'/>";
-    } else echo "I will not participate to the gala diner.<input type='hidden' name='gala' value='".$gala."'/>";
+      echo "I will participate to the social night at BDT (diner and drinks).<input type='hidden' name='gala' value='".$gala."'/>";
+    } else echo "I will not participate to the social night at BDT (diner and drinks).<input type='hidden' name='gala' value='".$gala."'/>";
   } else {
-    echo "I will participate to the gala diner: ";
+    echo "I will participate to the social night at BDT (diner and drinks): ";
     echo '<div class="radio">';
 			echo '<label>';
 				echo '<input type="radio" name="gala" id="gala" value="1" ';
@@ -481,13 +481,13 @@ if (!$confirmed) {
   }
 
   // Déjeuners
-  echo "<h3>Lunch</h3>";
+  echo "<h3>Social night at BDT (Wednesday, October 12th)</h3>";
   if ($verified) {
     $wantlunchtext = "";
     if ($lunch_nb==0) {
-      echo "I will not have a lunch ".$lunch_desc.".";
+      echo "I will not participate to social night at BDT (drinks only) ".$lunch_desc.".";
     } else {
-      echo "I will have ".$lunch_nb." lunch(es) ".$lunch_desc_en." (".$rgl_midi." euros) :<ul>";
+      echo "I will participate to social night at BDT (drinks only, ".$rgl_midi." euros) :<ul>";
       for ($i=0; $i< sizeof($lunchs_en); $i++) {
         if ($want_lunch[$i]==1) {
         echo "<li>".$lunchs_en[$i]."</li>";
@@ -498,7 +498,7 @@ if (!$confirmed) {
       echo "</ul>";
     }
   } else {
-    echo "I will have one or several lunch(es) ".$lunch_desc_en." :";
+    echo "I will participate to social night at BDT (drinks only) ".$lunch_desc_en." :";
     echo "<table>";
     for ($i=0; $i< sizeof($lunchs_en); $i++) {
       echo "<tr><td>".$lunchs_en[$i]." (".$lunch_price." euros)&nbsp;&nbsp;</td><td><input name='wantlunch[]' type='checkbox' value='".$lunchs_bd_names[$i]."'";
@@ -509,7 +509,7 @@ if (!$confirmed) {
   }
   
   // Activités sociales
-  echo "<h3>Social activities (free)</h3>";
+  echo "<h3>Social activities (do not fill this part. Not applicable for this conference)</h3>";
   if($verified) {
     echo "Social activity (first choice): ".$activites_en[$activity1].".<br />";
     echo " <input style='font-size: small' type='hidden' name='activity1' value='".$activity1."'/>";
@@ -542,8 +542,8 @@ if (!$confirmed) {
     echo "Fees refund must be addressed to <a href='mailto:".$contact_email."'>".$contact_email."</a> before ".$remb_deadline_en.". A penalty of ".$remb_penalty." euros will be kept. No fees refund will be allowed after that date.<br />";
     echo "<table style='font-size: small; display:inline'>";
     echo "<tr><td><strong>Registration</strong> : </td><td>&nbsp;</td><td><input class='rgl' name='rgl_insc' type='text' size='5' value='".$rgl_insc."' style='text-align:right' readonly/> euros</td></tr>";
-    echo "<tr><td><strong>Lunches (".$lunch_nb.")</strong> : </td><td> + </td><td><input class='rgl' name='rgl_midi' type='text' size='5' value='".$rgl_midi."' style='text-align:right'  readonly/> euros</td></tr>";
-    echo "<tr><td><strong>Gala diner</strong> : </td><td> + </td><td><input class='rgl' name='rgl_gala' type='text' size='5' value='";
+    echo "<tr><td><strong>Social night, no diner (".$lunch_nb.")</strong> : </td><td> + </td><td><input class='rgl' name='rgl_midi' type='text' size='5' value='".$rgl_midi."' style='text-align:right'  readonly/> euros</td></tr>";
+    echo "<tr><td><strong>Social night with diner</strong> : </td><td> + </td><td><input class='rgl' name='rgl_gala' type='text' size='5' value='";
     if ($gala==1) echo $rgl_gala; else echo 0;
     echo "' style='text-align:right'  readonly/> euros</td></tr>";
     echo "<tr><td><strong>Accompanying persons (".$nb_acc.")</strong> : </td><td> + </td><td><input class='rgl' name='rgl_acc' type='text' size='5' value='".$rgl_acc."' style='text-align:right'  readonly/> euros</td></tr>";
@@ -712,18 +712,18 @@ if (!$confirmed) {
     $texte .= "\n";
     $texte .= "* Number of accompanying persons .... : " . $nb_acc . "\n";
     if ($gala==="1") {
-      $texte .= "* Gala diner ...................... : Yes\n";
+      $texte .= "* Social night at BDT (diner and drinks) : Yes\n";
     } else {
-      $texte .= "* Gala diner ...................... : No\n";
+      $texte .= "* Social night at BDT (diner and drinks) : No\n";
     }
     if ($lunch_nb>0) {
-    $texte .= "* You have registered for " . $lunch_nb . " lunch(es) ";
+    $texte .= "* Social night at BDT (drinks only) ";
       $texte .= "(";
       for ($i=0; $i < sizeof($lunchs_bd_names); $i++) {
         if ($want_lunch[$i]==1) $texte .= $lunchs_en[$i]." ";
       }
       $texte .= ")"."\n";
-    } else $texte .= "* You are not registered for lunch.\n";
+    } else $texte .= "* You vill not participate to social night at BDT.\n";
     $texte .= "* Activity, first choice .......... : ".$activites_en[$activity1]."\n";
     $texte .= "* Activity, second choice ......... : ".$activites_en[$activity2]."\n";
     if (count($addquestions)!=0) {
@@ -754,9 +754,9 @@ if (!$confirmed) {
         $texte .= "* Payment by ...................... : Cash\n";
       }
       $texte .= "* Registration fees ............... : " . $rgl_insc . " euros\n";
-      $texte .= "* Lunch(es) ....................... : " . $rgl_midi . " euros\n";
+      $texte .= "* Social night (drinks only) ...... : " . $rgl_midi . " euros\n";
       $texte .= "* Accompanying persons ............ : " . $rgl_acc . " euros\n";
-      $texte .= "* Gala diner ...................... : " . $rgl_gala . " euros\n";
+      $texte .= "* Social night (with diner) ....... : " . $rgl_gala . " euros\n";
       $texte .= "* TOTAL ........................... : " . $total . " euros\n\n";
     
       if ($payment=="cheque") {

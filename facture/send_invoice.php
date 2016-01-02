@@ -80,7 +80,7 @@ Courriel : <?php print $tres_email; ?><br>
       <br>
 Accompagnant(s)<br>
       <br>
-D&eacute;jeuner(s)<br>
+Soirée sociale au BDT (sans repas)<br>
 <?php if ($lunch_nb>0) {
   print "(";
   for ($i=0; $i < sizeof($lunchs_bd_names); $i++) {
@@ -89,7 +89,7 @@ D&eacute;jeuner(s)<br>
   print ")";
 }
 ?><br>
-Repas de gala<br>
+Soirée sociale au BDT (avec repas)<br>
       </td>
       <td style="vertical-align: top; text-align: center;">1<br>
       <br>
