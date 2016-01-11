@@ -129,7 +129,7 @@ Soirée sociale au BDT (avec repas)<br>
 </table>
 <div style="text-align: right;"><span style="font-style: italic;"><span style="font-weight: bold;">TOTAL : <?php print $total; ?></span></span> &#8364;&nbsp;&nbsp;&nbsp;&nbsp;<br>
 <span style="font-style: italic;"></span></div>
-<span style="font-style: italic;">Prestations non assujetties &agrave; la TVA</span><br>
+<span style="font-style: italic;">Exon&eacute;ration de TVA en vertu de l'article 261 du CGI</span><br>
 <br>
 <table style="text-align: left; width: 100%;" border="1" cellpadding="2" cellspacing="2">
   <tbody>
