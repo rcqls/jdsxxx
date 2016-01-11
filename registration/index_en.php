@@ -556,7 +556,7 @@ if (!$confirmed) {
     }
     echo "</select></td></tr>";
     echo "</table><br />";
-    echo "<strong>Additional questions:</strong><br />";
+    echo "<h3>Additional questions</h3><br />";
     for ($i=0; $i < sizeof($add_questions); $i++) {
       echo "<input type='checkbox' name='addquestions[]' value='".$add_labels[$i]."'>&nbsp; &nbsp;".$add_questions_en[$i]."<br />";
     }
