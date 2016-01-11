@@ -200,7 +200,7 @@ if ($submitted and !$verified) {
   if($reason==="empty") {
     echo "<div class='alert alert-danger' role='alert'>Veuillez compléter tous les champs manquants en jaune.</div>";
   } elseif($reason==="email") {
-    echo "<div class='alert alert-danger' role='alert'>Les deux adresses e-mail ne correspondent pas.</div>";
+    echo "<div class='alert alert-danger' role='alert'>Les deux adresses de courriel ne correspondent pas.</div>";
   } elseif ($reason==="notfree") {
     echo "<div class='alert alert-danger' role='alert'>Le code d'exonération entré était incorrect.</div>";
   }
@@ -210,11 +210,10 @@ if ($submitted and !$verified) {
 if (!$confirmed) {
   // Display the form with indications on missing entries and previously entered data if any
   if (!$submitted) {
-    echo "<div class='alert alert-info' role='alert'>Votre inscription peut &ecirc;tre mise à jour à tout moment en remplissant de nouveau ce formulaire <strong>avec la m&ecirc;me adresse e-mail</strong>. Le tarif de la date de votre première inscription vous sera automatiquement appliqué lors de toute modification. ".$welcome_message."<br>
-    <a href='".$current_url_en."'><img src='../inc/img/flag_en.png' alt='francais' width='60'>&nbsp; Formulaire d'inscription en anglais</a></div>";
+    echo "<div class='alert alert-info' role='alert'>Votre inscription peut &ecirc;tre mise à jour à tout moment en remplissant de nouveau ce formulaire <strong>avec la m&ecirc;me adresse de courriel</strong>. Le tarif de la date de votre première inscription vous sera automatiquement appliqué lors de toute modification. ".$welcome_message."</div>";
   }
   if ($verified) {
-    if ($exist_email) echo "<div class='alert alert-danger' role='alert'><strong>Attention !</strong> L'adresse e-mail que vous avez indiquée existe dans notre base de données : vous &ecirc;tes sur le point de procéder à une <strong>mise à jour d'une inscription existante</strong>. Pour l'inscription d'un nouveau participant, veuillez changer d'adresse e-mail.</div>";
+    if ($exist_email) echo "<div class='alert alert-danger' role='alert'><strong>Attention !</strong> L'adresse de courriel que vous avez indiquée existe dans notre base de données : vous &ecirc;tes sur le point de procéder à une <strong>mise à jour d'une inscription existante</strong>. Pour l'inscription d'un nouveau participant, veuillez changer d'adresse de courriel.</div>";
   }
   echo '<form role="form" class="form-inline" name="main" action="'. $current_url .'" method="post">';
   
@@ -338,11 +337,11 @@ if (!$confirmed) {
   
   // E-mail
   if ($verified) {
-    echo "E-mail : ".$email."<input type='hidden' style='font-size:small' name='email' value='".$email."'/><br />";
+    echo "Courriel : ".$email."<input type='hidden' style='font-size:small' name='email' value='".$email."'/><br />";
   } else {
 		echo '<div class="form-group">';
      if (empty($email) & $submitted) echo "&nbsp;<div class='col-sm-2'><mark>Compléter</mark></div> &nbsp;";
-			echo '<label for="email" class="col-sm-6">E-mail (un différent pour chaque inscrit)* &nbsp;</label>';
+			echo '<label for="email" class="col-sm-6">Courriel (un différent pour chaque inscrit)* &nbsp;</label>';
 			echo '<div class="col-sm-4">';
 				echo '<input class="form-control" name="email" placeholder="E-mail" size="50" type="text" value="'.$email.'">';
 			echo '</div>';
@@ -354,9 +353,9 @@ if (!$confirmed) {
   } else {
 		echo '<div class="form-group">';
      if (empty($email2) & $submitted) echo "&nbsp;<div class='col-sm-2'><mark>Compléter</mark></div> &nbsp;";
-			echo '<label for="email2" class="col-sm-4">Confirmation e-mail* &nbsp;</label>';
+			echo '<label for="email2" class="col-sm-4">Confirmation courriel* &nbsp;</label>';
 			echo '<div class="col-sm-4">';
-				echo '<input class="form-control" name="email2" placeholder="Confirmation e-mail" size="50" type="text" value="'.$email2.'">';
+				echo '<input class="form-control" name="email2" placeholder="Confirmation courriel" size="50" type="text" value="'.$email2.'">';
 			echo '</div>';
     echo '</div>';
   }
@@ -445,7 +444,7 @@ if (!$confirmed) {
   if ($verified) {
     echo "Je serai accompagné(e) de : ".$nb_acc." personne(s).<input type='hidden' style='font-size:small' name='nbacc' value='".$nb_acc."'/>";
   } else {
-    echo "<p>Vous pouvez également inscrire un ou plusieurs accompagnants. L'inscription d'un accompagnant lui donne droit de participer au dîner de gala et aux activités sociales. Le coût de l'inscription de chaque accompagnant est fixé à ".$acc_price." euros.";
+    echo "<p>Vous pouvez également inscrire un ou plusieurs accompagnants. L'inscription d'un accompagnant lui donne droit de participer au dîner de gala et au coquetel de bienvenue. Le coût de l'inscription de chaque accompagnant est fixé à ".$acc_price." euros.";
     echo '<div class="form-group">';
 			echo "<label for='nbacc' class='col-sm-6'>Nombre d'accompagnants &nbsp;</label>";
 			echo '<div class="col-sm-6">';
@@ -455,7 +454,7 @@ if (!$confirmed) {
   }
   
   // Dîner de gala
-  echo "<h3>Soirée sociale au BDT (".$gala_diner_date.", ".$gala_diner_price." euros)</h3>";
+  echo "<h3>Soirée sociale aux Brasseurs du Temps (".$gala_diner_date.", ".$gala_diner_price." euros)</h3>";
   if ($verified) {
     if($gala==="1") {
       echo "Je participerai à la soirée sociale (repas + consommations).<input type='hidden' name='gala' value='".$gala."'/>";
@@ -481,7 +480,7 @@ if (!$confirmed) {
   }
 
   // Déjeuners
-  echo "<h3>Soirée sociale au BDT (mercredi 12 octobre)</h3>";
+  echo "<h3>Soirée sociale aux Brasseurs du Temps (mercredi 12 octobre)</h3>";
   if ($verified) {
     $wantlunchtext = "";
     if ($lunch_nb==0) {
@@ -509,14 +508,13 @@ if (!$confirmed) {
   }
   
   // Activités sociales
-  echo "<h3>Activités sociales (ne pas remplir cette partie : pas d'activité sociale à ce colloque)</h3>";
+  echo "<h3>Ne pas remplir cette partie : non valide pour cette conférence</h3>";
   if($verified) {
     echo "Activité sociale (choix 1) : ".$activites[$activity1].".<br />";
     echo " <input style='font-size: small' type='hidden' name='activity1' value='".$activity1."'/>";
     echo "Activité sociale (choix 2) : ".$activites[$activity2].".<br />";
     echo " <input style='font-size: small' type='hidden' name='activity2' value='".$activity2."'/>";
   } else {
-    echo "<strong>Activités sociales ".$social_activity_date."</strong> : afin de vous satisfaire au mieux et faciliter l'organisation des activités sociales, nous vous proposons de formuler deux choix par ordre de priorité parmi les activités suivantes. Ceci nous permettra de mieux dimensionner les différents groupes.<br>";
     echo "&nbsp; &nbsp; <b>Activité sociale (choix 1) :</b> <select name='activity1' class='form-control'>";
     for ($i=0; $i<sizeof($activites); $i++) {
       if ($i==$activity1) {
@@ -539,7 +537,7 @@ if (!$confirmed) {
   if ($verified and !$confirmed) {
     echo "<h3>Règlement</h3>";
     echo "<b>Annulation :</b><br />";
-    echo "Le remboursement des droits d'inscription sera possible sur demande écrite faite à l'adresse e-mail <a href='mailto:".$contact_email."'>".$contact_email."</a> avant le ".$remb_deadline.". Il donnera lieu à une retenue de ".$remb_penalty." euros. Aucun remboursement ne sera effectué après cette date.<br />";
+    echo "Le remboursement des droits d'inscription sera possible sur demande écrite faite à l'adresse de courriel <a href='mailto:".$contact_email."'>".$contact_email."</a> avant le ".$remb_deadline.". Il donnera lieu à une retenue de ".$remb_penalty." euros. Aucun remboursement ne sera effectué après cette date.<br />";
     echo "<table style='font-size: small; display:inline; border:none;'>";
     echo "<tr><td><strong>Inscription</strong> : </td><td>&nbsp;</td><td><input class='rgl' name='rgl_insc' type='text' size='5' value='".$rgl_insc."' style='text-align:right' readonly/> euros</td></tr>";
     echo "<tr><td><strong>Soirée sociale, pas de repas (".$lunch_nb.")</strong> : </td><td> + </td><td><input class='rgl' name='rgl_midi' type='text' size='5' value='".$rgl_midi."' style='text-align:right'  readonly/> euros</td></tr>";
@@ -601,7 +599,7 @@ if (!$confirmed) {
   if ($one_res=mysql_fetch_object($res)) {
     if (($one_res->fees!=$total) && ($one_res->res==="1")) {
     $ok=0;
-    echo "<div class='alert alert-danger' role='alert'>Vous &ecirc;tes déjà enregistré(e) (adresse e-mail existante dans la base de données) et vous avez déjà payé. Le montant des frais que vous déclarez a changé : veuillez nous contacter à <a href='mailto:".$contact_email."'>".$contact_email."</a> pour faire une demande de modifications de vos options.";
+    echo "<div class='alert alert-danger' role='alert'>Vous &ecirc;tes déjà enregistré(e) (adresse de courriel existante dans la base de données) et vous avez déjà payé. Le montant des frais que vous déclarez a changé : veuillez nous contacter à <a href='mailto:".$contact_email."'>".$contact_email."</a> pour faire une demande de modifications de vos options.";
     } else {
     echo "<div class='alert alert-danger' role='alert'><em>Vous &ecirc;tiez déjà enregistré(e) (adresse email existante dans la base de données) : <strong>votre inscription a été mise à jour et seule la dernière inscription sera prise en compte.</strong></em>";
     $query="UPDATE `".$db_table."` SET `title`='{$title}' , `fname`='{$fname}' , `lname`= '{$lname}' , `affiliation`='{$affiliation}' , `address`='{$address}' , `address2`='{$address2}' , `zip`='{$zip}' , `city`='{$city}' , `country`='{$country}', `phone`='{$phone}' , `fax`='{$fax}' , `status`='{$bd_status}', `nb_acc`='{$nb_acc}', `gala`='{$gala}'";
@@ -696,7 +694,7 @@ if (!$confirmed) {
     $texte .= "* Code-Postal ..................... : " . $zip . "\n";
     $texte .= "* Ville ........................... : " . $city . "\n";
     $texte .= "* Pays ............................ : " . $country . "\n";
-    $texte .= "* E-Mail .......................... : " . $email . "\n";
+    $texte .= "* Courriel ........................ : " . $email . "\n";
     $texte .= "* Téléphone ....................... : " . $phone . " \n";
     $texte .= "* Fax ............................. : " . $fax . "\n\n";
     $texte .= "* Inscrit en tant que ............. : ";
