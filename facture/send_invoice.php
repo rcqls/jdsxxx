@@ -149,7 +149,7 @@ BIC : <?php print $bic; ?><br>
       </td>
       <td style="vertical-align: center; text-align: center; width: 50%;">
       <h3><?php print $pres_co; ?></h3>
-Pr&eacute;sident(e) du comit&eacute; d''organisation<br>
+Pr&eacute;sident(e) du comit&eacute; d'organisation<br>
       <br>
       <img style="width: 150px; " alt="" src="<?php print dirname(__FILE__); ?>/signature.jpg"><br>
       </td>
