@@ -444,7 +444,7 @@ if (!$confirmed) {
   if ($verified) {
     echo "Je serai accompagné(e) de : ".$nb_acc." personne(s).<input type='hidden' style='font-size:small' name='nbacc' value='".$nb_acc."'/>";
   } else {
-    echo "<p>Vous pouvez également inscrire un ou plusieurs accompagnants. L'inscription d'un accompagnant lui donne droit de participer au dîner de gala et au coquetel de bienvenue. Le coût de l'inscription de chaque accompagnant est fixé à ".$acc_price." euros.";
+    echo "<p>Vous pouvez également inscrire un ou plusieurs accompagnants. L'inscription d'un accompagnant lui donne droit de participer au dîner de gala, au cocktail de bienvenue ainsi qu'à la soirée sociale (repas et consommations) aux Brasseurs du Temps. Le coût de l'inscription de chaque accompagnant est fixé à ".$acc_price." euros.";
     echo '<div class="form-group">';
 			echo "<label for='nbacc' class='col-sm-6'>Nombre d'accompagnants &nbsp;</label>";
 			echo '<div class="col-sm-6">';
@@ -454,7 +454,7 @@ if (!$confirmed) {
   }
   
   // Dîner de gala
-  echo "<h3>Soirée sociale aux Brasseurs du Temps (".$gala_diner_date.", ".$gala_diner_price." euros)</h3>";
+  echo "<h3>Soirée sociale aux Brasseurs du Temps (BDT) : ".$gala_diner_date."</h3>";
   if ($verified) {
     if($gala==="1") {
       echo "Je participerai à la soirée sociale (repas + consommations).<input type='hidden' name='gala' value='".$gala."'/>";
@@ -480,7 +480,7 @@ if (!$confirmed) {
   }
 
   // Déjeuners
-  echo "<h3>Soirée sociale aux Brasseurs du Temps (mercredi 12 octobre)</h3>";
+  echo "<h3>Soirée sociale aux Brasseurs du Temps (BDT) : mercredi 12 octobre, consommations seulement, 10 euros</h3>";
   if ($verified) {
     $wantlunchtext = "";
     if ($lunch_nb==0) {
@@ -508,7 +508,7 @@ if (!$confirmed) {
   }
   
   // Activités sociales
-  echo "<h3>Ne pas remplir cette partie : non valide pour cette conférence</h3>";
+  echo "<h3>Ne pas remplir cette partie : non applicable pour ce colloque</h3>";
   if($verified) {
     echo "Activité sociale (choix 1) : ".$activites[$activity1].".<br />";
     echo " <input style='font-size: small' type='hidden' name='activity1' value='".$activity1."'/>";
