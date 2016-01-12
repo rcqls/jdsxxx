@@ -777,8 +777,8 @@ if (!$confirmed) {
 
     // Envoi de l'email
     $message ="--" .$boundary. "\n";
-    $message .= "Content-Type: text/plain;"."\n";
-    $message .= 'Content-Transfer-Encoding: 7bit'."\n";
+    $message .= "Content-Type: text/plain; charset=utf-8;"."\n";
+    $message .= 'Content-Transfer-Encoding: quoted-printable'."\n";
     $message .= $texte;
     $message .= "In case of problem, please contact: ".$contact_email.".\n";
     $message .= "--" .$boundary. "\n";
