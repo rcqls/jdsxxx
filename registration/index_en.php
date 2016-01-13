@@ -733,7 +733,7 @@ if (!$confirmed) {
         $res_query=mysql_fetch_array($res_query);
        if ($res_query[$add_labels[$i]]==="yes") {//Quick and dirty: sépare le cas journée du sud en repérant la  balise html 
 					if (substr($add_questions[$i],0,1) === "<") {
-						$texte .= "Je participe au Journées du Sud (un mail de confirmation séparé me sera envoyé), ";
+						$texte .= "I attend Journées Statistiques du Sud (a separate confirmation email will be sent), ";
 					} else {
 						$texte .= $add_questions[$i] .", ";
 					}
