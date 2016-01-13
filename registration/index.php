@@ -644,7 +644,7 @@ if (!$confirmed) {
   require_once('../facture/send_invoice.php');
 
   if ($ok) {
-    echo "<div class='well'><em>Un email de confirmation vous a été envoyé à votre adresse avec en pièce jointe la facture de votre inscription.</em><br/>";
+    echo "<div class='well'><em>Un courriel de confirmation vous a été envoyé à votre adresse avec en pièce jointe la facture de votre inscription.</em><br/>";
 
     if (($payment=="credit")&&($total!=0)) {
       //Form to send payment information to Société Générale (made from the script 'payment.php')
